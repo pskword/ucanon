@@ -1,6 +1,6 @@
 # Maintainable Javascript
 
-* 'Maintainable Javascript'을 읽으면서 메모한 내용들을 정리해 본다.
+* 'Maintainable Javascript'을 읽으면서 메모한 몇 가지 내용들을 정리해 본다.
 
 
 
