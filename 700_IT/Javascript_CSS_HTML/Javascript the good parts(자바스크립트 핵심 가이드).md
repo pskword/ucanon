@@ -9,10 +9,19 @@ Javascript the good parts을 읽으며 메모한 내용들을 기록해 봅니�
 NaN은 수치 연산을 해서 정상적인 값을 얻지 못할 때 반환되는 값입니다.
 isNaN() 함수를 통해서 NaN인지 비교할 수 있습니다.
 
-\(백슬래시)는 이스케이프 문자입니다.
-
 ```javascript
-'cat'.toUpperCase() === 'CAT'
+function isNumber(value) {
+    if (isNaN(value)) { 
+        console.log(value + ' is not number.'); 
+    } else { 
+        console.log(value + ' is number.'); 
+    }
+}
+isNumber(123);
+isNumber("abc");
+
+>> 123 is number.
+>> abc is not number.
 ```
 
 
