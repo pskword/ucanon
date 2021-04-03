@@ -1,9 +1,200 @@
 <!DOCTYPE html>
-<html>
-<body>
+<html lang="en">
+    <head>
+        <title>ucanon.com</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta
+            name="Description"
+            content="This site was created for the purpose of sharing personal study content."
+        />
+        <style>
+            * {
+                box-sizing: border-box;
+            }
 
-<h1>UCANON.COM</h1>
-<p>Welcome to come my site.</p>
+            body {
+                font-family: Arial, Helvetica, sans-serif;
+            }
 
-</body>
+            /* Style the header */
+            header {
+                background-color: #666;
+                padding: 0px;
+                text-align: center;
+                font-size: 35px;
+                color: white;
+            }
+
+            /* Create two columns/boxes that floats next to each other */
+            nav {
+                float: left;
+                width: 20%;
+                height: 100%; /* only for demonstration, should be removed */
+                background: #fff;
+                padding: 10px;
+            }
+
+            /* Style the list inside the menu */
+            nav ul {
+                margin-top: 5px;
+                margin-bottom: 5px;
+                padding-top: 5px;
+                padding-left: 10px;
+                padding-bottom: 5px;
+            }
+
+            article {
+                float: left;
+                padding: 20px;
+                width: 80%;
+                background-color: #fff;
+                height: 100%; /* only for demonstration, should be removed */
+            }
+
+            /* Clear floats after the columns */
+            section::after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+
+            /* Style the footer */
+            footer {
+                background-color: #777;
+                padding: 0px;
+                text-align: center;
+                color: white;
+            }
+
+            /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
+            @media (max-width: 600px) {
+                nav,
+                article {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+
+            h2.main_title {
+                margin: 10px 10px 10px 10px;
+            }
+
+            .left_menu {
+                font-size: 13px;
+            }
+
+            .left_menu a:link {
+                text-decoration: none;
+                color: #535252;
+            }
+
+            .left_menu a:visited {
+                text-decoration: none;
+                color: #535252;
+            }
+
+            .left_menu a:hover {
+                text-decoration: underline;
+                cursor: pointer;
+            }
+
+            .left_menu a:active {
+                text-decoration: underline;
+            }
+
+            .left_men li {
+                color: #535252;
+            }
+        </style>
+        <script src="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/toastui-editor-viewer.js"></script>
+        <script src="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
+        <link
+            rel="stylesheet"
+            href="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/toastui-editor-viewer.css"
+        />
+        <link
+            rel="stylesheet"
+            href="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/github.min.css"
+        />
+        <script>
+            function init() {
+                var mdPath = getParameter("mp");
+                loadWebPage(mdPath, loadViewer);
+            }
+
+            function loadViewer(content) {
+                const Viewer = toastui.Editor;
+                const codeSyntaxHighlight = Viewer.plugin;
+                const viewer = new Viewer({
+                    el: document.querySelector("#viewer"),
+                    initialValue: content,
+                    plugins: [codeSyntaxHighlight],
+                });
+            }
+
+            function loadWebPage(url, callback) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("GET", url);
+
+                xhr.responseType = "text";
+
+                xhr.onload = function () {
+                    if (xhr.readyState === xhr.DONE && xhr.status === 200) {
+                        callback(xhr.responseText);
+                    }
+                };
+
+                xhr.send();
+            }
+
+            function getParameter(param) {
+                var url = decodeURI(location.href);
+                var paramArr = url
+                    .substring(url.indexOf("#") + 1, url.length)
+                    .split("&");
+                var value = "";
+
+                for (var i = 0; i < paramArr.length; i++) {
+                    var temp = paramArr[i].split("=");
+
+                    if (temp[0].toUpperCase() == param.toUpperCase()) {
+                        value = paramArr[i].split("=")[1];
+                        break;
+                    }
+                }
+
+                return value;
+            }
+
+            function goPage(url) {
+                window.location.href = "#mp=" + encodeURI(url);
+                loadWebPage(url, loadViewer);
+            }
+        </script>
+    </head>
+    <body>
+        <h2 class="main_title">UCANON.COM</h2>
+        <header></header>
+        <section>
+            <nav class="left_menu">
+                <ul>
+                    <li>독서
+                        <ul>
+                            <li><a onclick="javascript:goPage('blog/500_Book_Movie/세상을 만드는 글자 코딩.md')">세상을 만드는 글자 코딩</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <article>
+                <div id="viewer"></div>
+            </article>
+        </section>
+        <footer>
+            <p></p>
+        </footer>
+        <script>
+            init();
+        </script>
+    </body>
 </html>
