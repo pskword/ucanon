@@ -121,7 +121,9 @@
         <script>
             function init() {
                 var mdPath = getParameter("mp");
-                loadWebPage(mdPath, loadViewer);
+                if (mdPath !== "") {
+                    loadWebPage(mdPath, loadViewer);
+                }
                 setMenuShow();
             }
 
