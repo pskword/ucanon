@@ -82,6 +82,7 @@
 
             .left_menu {
                 font-size: 13px;
+                cursor: pointer;
             }
 
             .left_menu a:link {
@@ -96,7 +97,6 @@
 
             .left_menu a:hover {
                 text-decoration: underline;
-                cursor: pointer;
             }
 
             .left_menu a:active {
@@ -109,6 +109,7 @@
         </style>
         <script src="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/toastui-editor-viewer.js"></script>
         <script src="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
+        <script src="openSource/jquery/jquery-3.6.0.min.js"></script>
         <link
             rel="stylesheet"
             href="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/toastui-editor-viewer.css"
@@ -121,6 +122,7 @@
             function init() {
                 var mdPath = getParameter("mp");
                 loadWebPage(mdPath, loadViewer);
+                setMenuShow();
             }
 
             function loadViewer(content) {
@@ -170,6 +172,17 @@
             function goPage(url) {
                 window.location.href = "#mp=" + encodeURI(url);
                 loadWebPage(url, loadViewer);
+                event.stopPropagation();
+            }
+
+            function setMenuShow() {
+                $(".left_menu .main").click(function() {
+                    if($(this).find(".sub").is(":visible")){
+                        $(this).find(".sub").slideUp(100);
+                    } else {
+                        $(this).find(".sub").slideDown(100);
+                    }
+                })
             }
         </script>
     </head>
@@ -179,9 +192,27 @@
         <section>
             <nav class="left_menu">
                 <ul>
-                    <li>독서
+                    <li class="main">독서
                         <ul>
-                            <li><a onclick="javascript:goPage('blog/500_Book_Movie/세상을 만드는 글자 코딩.md')">세상을 만드는 글자 코딩</a></li>
+                            <!-- <li class="sub" style="display:none"><a onclick="javascript:goPage('')"></a></li> -->
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/Study is HARD WORK.md')">Study is HARD WORK</a></li>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/세상을 만드는 글자 코딩.md')">세상을 만드는 글자 코딩</a></li>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/그건 사랑이었네.md')">그건 사랑이었네</a></li>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/기도의 영을 받는 법.md')">기도의 영을 받는 법</a></li>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/내 생애 단 한번.md')">내 생애 단 한번</a></li>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/삶을 변혁시키는 책 읽기.md')">삶을 변혁시키는 책 읽기</a></li>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/아몬드.md')">아몬드</a></li>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/완벽한 공부법.md')">완벽한 공부법</a></li>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/하나님을 경외하는 마음.md')">하나님을 경외하는 마음</a></li>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/한비야님의 그건 사랑이었네에서 소개한 책들.md')">한비야님의 그건 사랑이었네에서 소개한 책들</a></li>
+                         </ul>
+                    </li>
+                    <li class="main">IT
+                        <ul>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/Head First Object-Oriented Analysis & Design.md')">Head First Object-Oriented Analysis & Design</a></li>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/Javascript the good parts(자바스크립트 핵심 가이드).md')">Javascript_CSS_HTML/Javascript the good parts(자바스크립트 핵심 가이드)</a></li>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/Maintainable_Javascript.md')">Maintainable_Javascript</a></li>
+                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/escape_encodeURI_encodeURLComponent.md')">escape_encodeURI_encodeURLComponent</a></li>
                         </ul>
                     </li>
                 </ul>
