@@ -129,11 +129,11 @@
 
             function loadViewer(content) {
                 const Viewer = toastui.Editor;
-                const codeSyntaxHighlight = Viewer.plugin;
+                const codeSyntaxHighlight = Viewer.plugin.codeSyntaxHighlight;
                 const viewer = new Viewer({
                     el: document.querySelector("#viewer"),
                     initialValue: content,
-                    plugins: [codeSyntaxHighlight],
+                    plugins: [ codeSyntaxHighlight ],
                 });
             }
 
