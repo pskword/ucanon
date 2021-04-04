@@ -1,243 +1,77 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <title>ucanon.com</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
-            name="Description"
-            content="This site was created for the purpose of sharing personal study content."
-        />
-        <style>
-            * {
-                box-sizing: border-box;
-            }
+<html>
+<head>
+    <title>ucanon.com</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="Description" content="This site was created for the purpose of sharing personal study content." />
+    <link rel="stylesheet" href="index.css" />
+    <script src="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/toastui-editor-viewer.js"></script>
+    <script src="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
+    <script src="openSource/jquery/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/toastui-editor-viewer.css" />
+    <link rel="stylesheet" href="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/github.min.css" />
+    <script src="index.js"></script>
+</head>
+<body>
+    <h2 class="main_title">UCANON.COM</h2>
+    <header></header>
+    <section>
+        <nav class="left_menu">
+            <ul>
+                <li>
+                    <div class="main">독서</div>
+                    <ul>
+                        <!-- <li class="sub" style="display:none"><a onclick="javascript:goPage('')"></a></li> -->
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/Study is HARD WORK.md')">Study is HARD WORK</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/세상을 만드는 글자 코딩.md')">세상을 만드는 글자 코딩</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/그건 사랑이었네.md')">그건 사랑이었네</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/기도의 영을 받는 법.md')">기도의 영을 받는 법</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/내 생애 단 한번.md')">내 생애 단 한번</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/삶을 변혁시키는 책 읽기.md')">삶을 변혁시키는 책 읽기</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/아몬드.md')">아몬드</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/완벽한 공부법.md')">완벽한 공부법</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/하나님을 경외하는 마음.md')">하나님을 경외하는 마음</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/한비야님의 그건 사랑이었네에서 소개한 책들.md')">한비야님의 그건 사랑이었네에서 소개한 책들</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/전태일 평전.md')">전태일 평전</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/잠수복과 나비.md')">잠수복과 나비</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/비밀의 방.md')">비밀의 방</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/백년을 살아보니.md')">백년을 살아보니</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/닌텐도이야기.md')">닌텐도이야기</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/웨스터민스터 소교리문답.md')">웨스터민스터 소교리문답</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/담론.md')">담론</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="main">Javascript</div>
+                    <ul>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/Head First Object-Oriented Analysis & Design.md')">Head First Object-Oriented Analysis & Design</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/Javascript the good parts(자바스크립트 핵심 가이드).md')">Javascript_CSS_HTML/Javascript the good parts(자바스크립트 핵심 가이드)</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/Maintainable_Javascript.md')">Maintainable_Javascript</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/escape_encodeURI_encodeURLComponent.md')">escape_encodeURI_encodeURLComponent</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.md')">Javascript_Loading_Sequence</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/How Javascript Works.md')">How Javascript Works</a></li>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/jQuery.md')">jQuery</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <div class="main">Python</div>
+                    <ul>
+                        <li class="sub" style="display:none"><a onclick="javascript:goPage('code/pythonStudy/Python_Study_Plan.md')">Python Study Plan</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+        <article>
+            <div id="viewer"></div>
+        </article>
+    </section>
+    <footer>
+        <p></p>
+    </footer>
+    <script>
+        init();
+    </script>
+</body>
 
-            body {
-                font-family: Arial, Helvetica, sans-serif;
-            }
-
-            /* Style the header */
-            header {
-                background-color: #666;
-                padding: 0px;
-                text-align: center;
-                font-size: 35px;
-                color: white;
-            }
-
-            /* Create two columns/boxes that floats next to each other */
-            nav {
-                float: left;
-                width: 20%;
-                height: 100%; /* only for demonstration, should be removed */
-                background: #fff;
-                padding: 10px;
-            }
-
-            /* Style the list inside the menu */
-            nav ul {
-                padding-top: 5px;
-                padding-left: 10px;
-                padding-bottom: 5px;
-            }
-
-            article {
-                float: left;
-                padding: 20px;
-                width: 80%;
-                background-color: #fff;
-                height: 100%; /* only for demonstration, should be removed */
-            }
-
-            /* Clear floats after the columns */
-            section::after {
-                content: "";
-                display: table;
-                clear: both;
-            }
-
-            /* Style the footer */
-            footer {
-                background-color: #777;
-                padding: 0px;
-                text-align: center;
-                color: white;
-            }
-
-            /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-            @media (max-width: 600px) {
-                nav,
-                article {
-                    width: 100%;
-                    height: auto;
-                }
-            }
-
-            h2.main_title {
-                margin: 10px 10px 10px 10px;
-            }
-
-            .left_menu {
-                font-size: 13px;
-                cursor: pointer;
-                overflow: hidden;
-            }
-
-            .left_menu a:link {
-                text-decoration: none;
-                color: #535252;
-            }
-
-            .left_menu a:visited {
-                text-decoration: none;
-                color: #535252;
-            }
-
-            .left_menu a:hover {
-                text-decoration: underline;
-            }
-
-            .left_menu a:active {
-                text-decoration: underline;
-            }
-
-            .left_menu li {
-                color: #535252;
-                margin-top : 3px;
-                margin-bottom : 3px;
-            }
-        </style>
-        <script src="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/toastui-editor-viewer.js"></script>
-        <script src="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/toastui-editor-plugin-code-syntax-highlight-all.min.js"></script>
-        <script src="openSource/jquery/jquery-3.6.0.min.js"></script>
-        <link
-            rel="stylesheet"
-            href="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/toastui-editor-viewer.css"
-        />
-        <link
-            rel="stylesheet"
-            href="openSource/toastUI/editor/node_modules/@toast-ui/editor/dist/github.min.css"
-        />
-        <script>
-            function init() {
-                var mdPath = getParameter("mp");
-                if (mdPath !== "") {
-                    loadWebPage(mdPath, loadViewer);
-                }
-                setMenuShow();
-            }
-
-            function loadViewer(content) {
-                const Viewer = toastui.Editor;
-                const codeSyntaxHighlight = Viewer.plugin.codeSyntaxHighlight;
-                const viewer = new Viewer({
-                    el: document.querySelector("#viewer"),
-                    initialValue: content,
-                    plugins: [ codeSyntaxHighlight ],
-                });
-            }
-
-            function loadWebPage(url, callback) {
-                var xhr = new XMLHttpRequest();
-                xhr.open("GET", url);
-
-                xhr.responseType = "text";
-
-                xhr.onload = function () {
-                    if (xhr.readyState === xhr.DONE && xhr.status === 200) {
-                        callback(xhr.responseText);
-                    }
-                };
-
-                xhr.send();
-            }
-
-            function getParameter(param) {
-                var url = decodeURI(location.href);
-                var paramArr = url
-                    .substring(url.indexOf("#") + 1, url.length)
-                    .split("&");
-                var value = "";
-
-                for (var i = 0; i < paramArr.length; i++) {
-                    var temp = paramArr[i].split("=");
-
-                    if (temp[0].toUpperCase() == param.toUpperCase()) {
-                        value = paramArr[i].split("=")[1];
-                        break;
-                    }
-                }
-
-                return value;
-            }
-
-            function goPage(url) {
-                window.location.href = "#mp=" + encodeURI(url);
-                loadWebPage(url, loadViewer);
-            }
-
-            function setMenuShow() {
-                $(".left_menu .main").click(function() {
-                    if($(this).parent().find(".sub").is(":visible")){
-                        $(this).parent().find(".sub").slideUp(100);
-                    } else {
-                        $(this).parent().find(".sub").slideDown(100);
-                    }
-                })
-            }
-        </script>
-    </head>
-    <body>
-        <h2 class="main_title">UCANON.COM</h2>
-        <header></header>
-        <section>
-            <nav class="left_menu">
-                <ul>
-                    <li><div class="main">독서</div>
-                        <ul>
-                            <!-- <li class="sub" style="display:none"><a onclick="javascript:goPage('')"></a></li> -->
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/Study is HARD WORK.md')">Study is HARD WORK</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/세상을 만드는 글자 코딩.md')">세상을 만드는 글자 코딩</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/그건 사랑이었네.md')">그건 사랑이었네</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/기도의 영을 받는 법.md')">기도의 영을 받는 법</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/내 생애 단 한번.md')">내 생애 단 한번</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/삶을 변혁시키는 책 읽기.md')">삶을 변혁시키는 책 읽기</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/아몬드.md')">아몬드</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/완벽한 공부법.md')">완벽한 공부법</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/하나님을 경외하는 마음.md')">하나님을 경외하는 마음</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/한비야님의 그건 사랑이었네에서 소개한 책들.md')">한비야님의 그건 사랑이었네에서 소개한 책들</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/전태일 평전.md')">전태일 평전</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/잠수복과 나비.md')">잠수복과 나비</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/비밀의 방.md')">비밀의 방</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/백년을 살아보니.md')">백년을 살아보니</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/닌텐도이야기.md')">닌텐도이야기</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/웨스터민스터 소교리문답.md')">웨스터민스터 소교리문답</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/500_Book_Movie/담론.md')">담론</a></li>
-                         </ul>
-                    </li>
-                    <li><div class="main">IT</div>
-                        <ul>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/Head First Object-Oriented Analysis & Design.md')">Head First Object-Oriented Analysis & Design</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/Javascript the good parts(자바스크립트 핵심 가이드).md')">Javascript_CSS_HTML/Javascript the good parts(자바스크립트 핵심 가이드)</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/Maintainable_Javascript.md')">Maintainable_Javascript</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/escape_encodeURI_encodeURLComponent.md')">escape_encodeURI_encodeURLComponent</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.md')">Javascript_Loading_Sequence</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/How Javascript Works.md')">How Javascript Works</a></li>
-                            <li class="sub" style="display:none"><a onclick="javascript:goPage('blog/700_IT/Javascript_CSS_HTML/jQuery.md')">jQuery</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-            <article>
-                <div id="viewer"></div>
-            </article>
-        </section>
-        <footer>
-            <p></p>
-        </footer>
-        <script>
-            init();
-        </script>
-    </body>
 </html>
