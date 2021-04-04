@@ -1,10 +1,10 @@
 # Python Study Plan
 
 * Python 시작하기
-  - [ ] Python 설치 및 개발 환경 구축
+  - [x] Python 설치 및 개발 환경 구축
     - Python 코드 작성 및 디버깅은 Visual Studio Code를 사용함
     - [https://www.codingfactory.net/11337](https://www.codingfactory.net/11337)
-  - [ ] Python 'Hello World' 출력 프로그램 작성 및 실행
+  - [x] Python 'Hello World' 출력 프로그램 작성 및 실행
 * Phython 기초 문법
   - [ ] 변수명과 예약어
   - [ ] 자료형과 연산자
