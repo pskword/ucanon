@@ -64,3 +64,5 @@ function setMenuShow() {
         }
     })
 }
+
+init();
