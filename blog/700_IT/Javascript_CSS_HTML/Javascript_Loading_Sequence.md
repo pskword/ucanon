@@ -7,11 +7,6 @@
 ## HTML 파싱 및 렌더링 과정
 
 
-
-
-
-
-
 ## 일반적인 HTML 
 일반적인 CSS와 Javascript 파일이 포함된 HTML 파일입니다.
 
@@ -34,10 +29,6 @@
 </html>
 ```
 아래는 위의 HTML 파일이 웹 브라우저에 로딩될 때, HTML과 Javascript의 실행 과정을 보여줍니다. hear 태그 아래에서 script 태그를 추가해서 javascript 파일(jquery.js, common.js)을 추가할 경우 body 태그 아래에 HTML 파싱전에 파일을 다운로드 받고, 실행하기 됩니다.
-![without-defer-async-head](blog/700_IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/without-defer-async-head.png)
-
-> [https://flaviocopes.com/javascript-async-defer/#no-defer-or-async-in-the-head](https://flaviocopes.com/javascript-async-defer/#no-defer-or-async-in-the-head)
-
 
 
 ## 권장하는 Script 위치 조정 HTML
@@ -62,12 +53,6 @@
 hear 태그 안에 script 태그를 넣어서 javascript 파일을 실행할 경우 화면 렌더링 시간이 지연될 수 있습니다. 따라서 위와 같이 script 태그를 body 태그 맨 아래에 추가하면 사용자에게 빠르게 화면을 보여줄 수 있습니다.
 ![](blog/700_IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/without-defer-async-body.png)
 
-> [https://flaviocopes.com/javascript-async-defer/#no-defer-or-async-in-the-head](https://flaviocopes.com/javascript-async-defer/#no-defer-or-async-in-the-head)
-
-
-
-
-
 
 ## async property
 
@@ -79,8 +64,6 @@ script 태그의 async 속성은 javascript 파일을 비동기적으로 로딩(
 ```
 
 ![with-async](blog/700_IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/with-async.png)
-> [https://flaviocopes.com/javascript-async-defer/#no-defer-or-async-in-the-head](https://flaviocopes.com/javascript-async-defer/#no-defer-or-async-in-the-head)
-
 
 
 ### async 의 문제점
@@ -106,9 +89,6 @@ Javascript에 async를 정의하면 HTML Parsing과 Javascript 다운로드를 �
 ```
 script 태그의 defer 속성은 javascript 파일을 비동기적으로 서버에 요청에서 다운로드(fetch) 받지만, 다운로드 받은 javascript 파일의 실행은 HTML을 모두 파싱한 이후에 실행합니다.
 ![with-defer](blog/700_IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/with-defer.png)
-> [https://flaviocopes.com/javascript-async-defer/#no-defer-or-async-in-the-head](https://flaviocopes.com/javascript-async-defer/#no-defer-or-async-in-the-head)
-
-
 
 ### defer 지원 브라우저
 
