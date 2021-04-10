@@ -1,5 +1,5 @@
 function init() {
-    var mdPath = getParameter("mp");
+    let mdPath = getParameter("mp");
     if (mdPath !== "") {
         loadWebPage(mdPath, loadViewer);
     }
@@ -32,14 +32,14 @@ function loadWebPage(url, callback) {
 }
 
 function getParameter(param) {
-    var url = decodeURI(location.href);
-    var paramArr = url
+    let url = decodeURI(location.href);
+    let paramArr = url
         .substring(url.indexOf("#") + 1, url.length)
         .split("&");
-    var value = "";
+    let value = "";
 
-    for (var i = 0; i < paramArr.length; i++) {
-        var temp = paramArr[i].split("=");
+    for (let i = 0; i < paramArr.length; i++) {
+        let temp = paramArr[i].split("=");
 
         if (temp[0].toUpperCase() == param.toUpperCase()) {
             value = paramArr[i].split("=")[1];
