@@ -36,7 +36,7 @@
 아래는 위의 HTML 파일이 웹 브라우저에 로딩될 때, HTML과 Javascript의 실행 과정을 보여줍니다. hear 태그 아래에서 script 태그를 추가해서 javascript 파일(jquery.js, common.js)을 추가할 경우 body 태그 아래에 HTML 파싱전에 파일을 다운로드 받고, 실행하기 됩니다.
 ![without-defer-async-head](blog/700_IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/without-defer-async-head.png)
 
-> (https://flaviocopes.com/javascript-async-defer/#no-defer-or-async-in-the-head)[https://flaviocopes.com/javascript-async-defer/#no-defer-or-async-in-the-head]
+> [https://flaviocopes.com/javascript-async-defer/#no-defer-or-async-in-the-head](https://flaviocopes.com/javascript-async-defer/#no-defer-or-async-in-the-head)
 
 
 

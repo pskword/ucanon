@@ -40,5 +40,4 @@
 
 ### Reference
 > [점프투더파이썬](https://wikidocs.net/book/1)
->
 > [Coding Factory 파이썬 강좌](https://www.codingfactory.net/python-tutorial-table-of-contents)
