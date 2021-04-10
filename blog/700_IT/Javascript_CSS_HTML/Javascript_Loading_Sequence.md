@@ -75,11 +75,6 @@ Javascript에 async를 정의하면 HTML Parsing과 Javascript 다운로드를 �
 따라서 HTML DOM을 제어하는 코드의 실행은 async 속성이 정의된 javascript 파일에서 실행할 때 주의해야 합니다.
 
 
-
-###  async 지원 브라우저
-
-
-
 ## defer property
 
 아래는 script 태그에 defer 속성을 정의한 예입니다.
@@ -90,8 +85,14 @@ Javascript에 async를 정의하면 HTML Parsing과 Javascript 다운로드를 �
 script 태그의 defer 속성은 javascript 파일을 비동기적으로 서버에 요청에서 다운로드(fetch) 받지만, 다운로드 받은 javascript 파일의 실행은 HTML을 모두 파싱한 이후에 실행합니다.
 ![with-defer](blog/700_IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/with-defer.png)
 
-### defer 지원 브라우저
+## async & defer 지원 브라우저
 
+* IE는 defer의 경우 예전부터 부분 지원하고 있으나 async 속성은 10 버전 이상부터 지원(defer 완전 지원 포함)
+* Firefox는 3.6 버전부터 모두 지원
+* chrome은 8 버전부터 모두 지원
+* safari는 5 버전부터 모두 지원(단, 5버전에서는 async=false 지원 안함)
+* ios safari는 5.1 버전부터 모두 지원
+* android는 3 버전부터 모두 지원
 
 
 
