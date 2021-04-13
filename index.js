@@ -18,7 +18,7 @@ function loadViewer(content) {
 
 function loadWebPage(url, callback) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", url);
+    xhr.open("GET", url + ".md");
 
     xhr.responseType = "text";
 
