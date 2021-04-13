@@ -1,5 +1,5 @@
 function init() {
-    let mdPath = getParameter("mp");
+    let mdPath = getAnchor();
     if (mdPath !== "") {
         loadWebPage(mdPath, loadViewer);
     }
@@ -31,6 +31,11 @@ function loadWebPage(url, callback) {
     xhr.send();
 }
 
+function getAnchor() {
+    let url = decodeURI(location.href);
+    return url.substring(url.indexOf("#") + 1, url.length);
+}
+
 function getParameter(param) {
     let url = decodeURI(location.href);
     let paramArr = url
@@ -51,7 +56,7 @@ function getParameter(param) {
 }
 
 function goPage(url) {
-    window.location.href = "#mp=" + encodeURI(url);
+    window.location.href = "#" + encodeURI(url);
     loadWebPage(url, loadViewer);
 }
 
