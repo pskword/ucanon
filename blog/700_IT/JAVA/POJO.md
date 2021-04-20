@@ -20,8 +20,8 @@ public class SimpleBean {
         this.id = id;
     }
     
-    public void getName() {
-        return this.name;
+    public void getId() {
+        return this.id;
     }
     
     public void setAge(String age) {
