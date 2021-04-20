@@ -39,7 +39,7 @@ public class SimpleBean {
 
 * jQuery.isPlainObject 함수 테스트 결과
 
-```js
+```javascript
 jQuery.isPlainObject("11");
 false
 jQuery.isPlainObject(11);
