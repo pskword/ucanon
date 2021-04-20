@@ -96,3 +96,7 @@ h2.main_title {
     margin-top : 3px;
     margin-bottom : 3px;
 }
+
+.left_menu li li {
+    display : none;
+}

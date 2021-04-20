@@ -62,10 +62,10 @@ function goPage(url) {
 
 function setMenuShow() {
     $(".left_menu .main").click(function () {
-        if ($(this).parent().find(".sub").is(":visible")) {
-            $(this).parent().find(".sub").slideUp(100);
+        if ($(this).parent().find("li").is(":visible")) {
+            $(this).parent().find("li").slideUp(100);
         } else {
-            $(this).parent().find(".sub").slideDown(100);
+            $(this).parent().find("li").slideDown(100);
         }
     })
 }
