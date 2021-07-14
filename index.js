@@ -4,6 +4,27 @@ function init() {
         loadWebPage(mdPath, loadViewer);
     }
     setMenuShow();
+    setHistoryBackEvent();
+}
+
+function setHistoryBackEvent() {
+	if (window.addEventListener) {
+		window.addEventListener("popstate", changePageState);
+	} else {
+		window.attachEvent("popstate", changePageState);
+	}
+}
+
+function changePageState() {
+    if ((history.state !== null) && (typeof history.state.url !== "undefined")) {
+        loadWebPage(history.state.url, loadViewer);
+    }
+}
+
+function pushState(url) {
+    if (url !== "") {
+	    history.pushState({ url : url }, "", "/#" + url);
+    }
 }
 
 function loadViewer(content) {
@@ -18,7 +39,7 @@ function loadViewer(content) {
 
 function loadWebPage(url, callback) {
     var xhr = new XMLHttpRequest();
-    xhr.open("GET", url + ".md");
+    xhr.open("GET", "/" + url + ".md");
 
     xhr.responseType = "text";
 
@@ -33,7 +54,11 @@ function loadWebPage(url, callback) {
 
 function getAnchor() {
     let url = decodeURI(location.href);
-    return url.substring(url.indexOf("#") + 1, url.length);
+    if (url.indexOf("#") > -1) {
+        return url.substring(url.indexOf("#") + 1, url.length);
+    } else {
+        return "";
+    }
 }
 
 function getParameter(param) {
@@ -43,11 +68,11 @@ function getParameter(param) {
         .split("&");
     let value = "";
 
-    for (let i = 0; i < paramArr.length; i++) {
-        let temp = paramArr[i].split("=");
+    for (let item in paramArr) {
+        let temp = item.split("=");
 
         if (temp[0].toUpperCase() == param.toUpperCase()) {
-            value = paramArr[i].split("=")[1];
+            value = item.split("=")[1];
             break;
         }
     }
@@ -56,8 +81,8 @@ function getParameter(param) {
 }
 
 function goPage(url) {
-    window.location.href = "#" + encodeURI(url);
     loadWebPage(url, loadViewer);
+    pushState(url);
 }
 
 function setMenuShow() {
