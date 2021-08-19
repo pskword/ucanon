@@ -7,5 +7,5 @@
 | 디모데 3과 - 하나님의 공동체 교회                  | [PPT](blog/300_Bible/SamilNewFamily/삼일교회_새가족부_디모데3과_강의.pptx), [PDF](blog/300_Bible/SamilNewFamily/삼일교회_새가족부_디모데3과_강의.pdf) | [DOC](blog/300_Bible/SamilNewFamily/삼일교회_새가족부_디모데3과_교재.docx), [PDF](blog/300_Bible/SamilNewFamily/삼일교회_새가족부_디모데3과_교재.pdf) |
 | 디모데 4과 - 하나님이 찾으시는 예배                | [PPT](blog/300_Bible/SamilNewFamily/삼일교회_새가족부_디모데4과_강의.pptx), [PDF](blog/300_Bible/SamilNewFamily/삼일교회_새가족부_디모데4과_강의.pdf) | [DOC](blog/300_Bible/SamilNewFamily/삼일교회_새가족부_디모데4과_교재.docx), [PDF](blog/300_Bible/SamilNewFamily/삼일교회_새가족부_디모데4과_교재.pdf) |
 | 교육 강사용 해설서                                 |                                                              | [DOC](blog/300_Bible/SamilNewFamily/삼일교회_새가족부_디모데_해설.docx) |
-| 디모데 강의안 (윤원석 간사님께서 공유해 주신 자료) | [PPT](blog/300_Bible/SamilNewFamily/삼일교회 새가족부 교육준비.pptx)                       |                                                              |
+| 디모데 강의안 (윤원석 간사님께서 공유해 주신 자료) | [PPT](blog/300_Bible/SamilNewFamily/삼일교회_새가족부_교육준비.pptx)                       |                                                              |
 
