@@ -11,5 +11,5 @@
 | 교육 강사용 해설서                                           |                                                              | [DOC](blog/300_Bible/SamilNewFamily/삼일교회_새가족부_디모데_해설.docx) |
 | 초신자(여호수아) 교육 강사용 해설서 (이성문 간사님 공유 자료) |                                                              | [HWP](blog/300_Bible/SamilNewFamily/Joshua2020.hwp), [PDF](blog/300_Bible/SamilNewFamily/Joshua2020.pdf) |
 | 기신자(디모데) 교육 강사용 해설서 (이성문 간사님 공유 자료)  |                                                              | [HWP](blog/300_Bible/SamilNewFamily/Timothy2020.hwp), [PDF](blog/300_Bible/SamilNewFamily/Timothy2020.pdf) |
-| 새가족 온라인 사역 가이드                                    |                                                              | [PPT](blog/300_Bible/SamilNewFamily/새가족부 온라인 사역 가이드.pptx), [PDF](blog/300_Bible/SamilNewFamily/새가족부 온라인 사역 가이드.pdf) |
+| 새가족 온라인 사역 가이드                                    |                                                              | [PPT](blog/300_Bible/SamilNewFamily/새가족부온라인사역가이드.pptx), [PDF](blog/300_Bible/SamilNewFamily/새가족부온라인사역가이드.pdf) |
 
