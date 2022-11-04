@@ -43,7 +43,7 @@ spring.mvc.view.prefix=/WEB-INF/view/
 spring.mvc.view.suffix=.jsp
 ```
 
-![image-20221104175918554](./Thymeleaf와 JSP 동시에 사용하기.assets/image-20221104175918554.png)
+![image-20221104175918554](blog/700_IT/JAVA/Thymeleaf와 JSP 동시에 사용하기.assets/image-20221104175918554.png)
 
 위와 같이 webapp/WEB-INF/view/ 디렉터리에 JSP 파일(getSession.jsp) 파일을 생성합니다.
 
@@ -97,7 +97,7 @@ JSP를 사용하기 위해서 Thymeleaf 설정에서 중요한 부분이 view-na
 
 view-names를 "th/*"로 설정할 경우 thymeleaf template 파일의 디렉터리와 Controller의 Path를 모두 "th"로 설정해야 합니다.
 
-![image-20221104175341123](./Thymeleaf와 JSP 동시에 사용하기.assets/image-20221104175341123.png)
+![image-20221104175341123](blog/700_IT/JAVA/Thymeleaf와 JSP 동시에 사용하기.assets/image-20221104175341123.png)
 
 아래는 샘플 파일(fruit.html)입니다.
 
