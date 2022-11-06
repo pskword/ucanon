@@ -4,24 +4,9 @@ SpringBoot 프로젝트에서 Thymeleaf와 JSP에 사용하는 방법을 설명�
 
 
 
-## 2. JSP 설정하기
+## 1. JSP 설정하기
 
 ### 1) pom.xml에 JSP 라이브러리 추가
-
-```xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-thymeleaf</artifactId>
-</dependency>
-```
-
-
-
-
-
-## 2. Thymeleaf 설정하기
-
-### 1) pom.xml에 Thymeleaf 라이브러리 추가
 
 ```xml
 <dependency>
@@ -79,6 +64,19 @@ public class SessionController {
 		return "getSession";
 	}
 }
+```
+
+
+
+## 2. Thymeleaf 설정하기
+
+### 1) pom.xml에 Thymeleaf 라이브러리 추가
+
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
 ```
 
 
