@@ -111,7 +111,7 @@ view-names를 "th/*"로 설정할 경우 thymeleaf template 파일의 디렉터�
     <span th:text="${fruit.fruit2}"></span><br/>
     <span th:text="${fruit.fruit3}"></span><br/>
 </body>
-</
+</html>
 ```
 
 
