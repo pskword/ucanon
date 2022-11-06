@@ -28,7 +28,7 @@ spring.mvc.view.prefix=/WEB-INF/view/
 spring.mvc.view.suffix=.jsp
 ```
 
-![](blog/700_IT/JAVA/Thymeleaf와_JSP_동시에_사용하기.assets/image-20221104175918554.png)
+![](blog/700_IT/JAVA/Thymeleaf와_JSP_동시에_사용하기.assets/image-20221107002321353.png)
 
 위와 같이 webapp/WEB-INF/view/ 디렉터리에 JSP 파일(getSession.jsp) 파일을 생성합니다.
 
