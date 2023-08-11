@@ -1,4 +1,4 @@
-function init() { debugger;
+function init() {
     let mdPath = getAnchor();
     if (mdPath !== "") {
         loadWebPage(mdPath, loadViewer);
