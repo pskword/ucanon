@@ -5,6 +5,7 @@ function init() {
     }
     setMenuShow();
     setHistoryBackEvent();
+    goPage("README");
 }
 
 function setHistoryBackEvent() {
@@ -40,9 +41,7 @@ function loadViewer(content) {
 function loadWebPage(url, callback) {
     var xhr = new XMLHttpRequest();
     xhr.open("GET", "/" + url + ".md");
-
     xhr.responseType = "text";
-
     xhr.onload = function () {
         if (xhr.readyState === xhr.DONE && xhr.status === 200) {
             callback(xhr.responseText);
