@@ -1,11 +1,12 @@
-function init() {
+function init() { debugger;
     let mdPath = getAnchor();
     if (mdPath !== "") {
         loadWebPage(mdPath, loadViewer);
+    } else {
+        loadWebPage("README", loadViewer);
     }
     setMenuShow();
     setHistoryBackEvent();
-    goPage("README");
 }
 
 function setHistoryBackEvent() {
