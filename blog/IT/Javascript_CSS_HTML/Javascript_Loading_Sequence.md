@@ -51,7 +51,7 @@
 </html>
 ```
 hear 태그 안에 script 태그를 넣어서 javascript 파일을 실행할 경우 화면 렌더링 시간이 지연될 수 있습니다. 따라서 위와 같이 script 태그를 body 태그 맨 아래에 추가하면 사용자에게 빠르게 화면을 보여줄 수 있습니다.
-![](blog/700_IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/without-defer-async-body.png)
+![](blog/IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/without-defer-async-body.png)
 
 
 ## async property
@@ -63,7 +63,7 @@ script 태그의 async 속성은 javascript 파일을 비동기적으로 로딩(
 <script async src="script.js"></script>
 ```
 
-![with-async](blog/700_IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/with-async.png)
+![with-async](blog/IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/with-async.png)
 
 
 ### async 의 문제점
@@ -83,7 +83,7 @@ Javascript에 async를 정의하면 HTML Parsing과 Javascript 다운로드를 �
 <script defer src="script.js"></script>
 ```
 script 태그의 defer 속성은 javascript 파일을 비동기적으로 서버에 요청에서 다운로드(fetch) 받지만, 다운로드 받은 javascript 파일의 실행은 HTML을 모두 파싱한 이후에 실행합니다.
-![with-defer](blog/700_IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/with-defer.png)
+![with-defer](blog/IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/with-defer.png)
 
 ## async & defer 지원 브라우저
 
