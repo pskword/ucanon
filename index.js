@@ -46,10 +46,18 @@ function loadWebPage(url, callback) {
     xhr.onload = function () {
         if (xhr.readyState === xhr.DONE && xhr.status === 200) {
             callback(xhr.responseText);
+            focusContent();
         }
     };
 
     xhr.send();
+}
+
+function focusContent() {
+    if (getAnchor() !== "") {
+        const targetSection = document.getElementById('content');
+        targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 function getAnchor() {

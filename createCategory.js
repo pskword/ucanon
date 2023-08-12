@@ -66,7 +66,7 @@ function createIndexFile() {
             let filePath = files[j].substr(files[j].indexOf("blog\\")).replaceAll("\\", "/");
             let noteName = filePath.substring(filePath.lastIndexOf("/")+1, filePath.indexOf(".md"));
             if ((noteName.indexOf("_") !== 0) && (filePath.indexOf(".md") > 0)) {
-                categoryMenu += '<li><a href="#content" onclick="javascript:goPage(\'' +  filePath.substring(0, filePath.indexOf(".md")) + '\')">' + noteName + '</a></li>\n';
+                categoryMenu += '<li><a onclick="javascript:goPage(\'' +  filePath.substring(0, filePath.indexOf(".md")) + '\')">' + noteName + '</a></li>\n';
             }
         }
 
@@ -92,7 +92,7 @@ function createIndexFile() {
         <script defer src="index.js"></script>
     </head>
     <body>
-        <h2 class="main_title"><a href="https://ucanon.com">UCANON.COM</a></h2>
+        <h2 class="main_title"><a href="/">UCANON.COM</a></h2>
         <header></header>
         <section>
             <nav class="left_menu">
