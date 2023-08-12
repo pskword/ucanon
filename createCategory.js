@@ -53,14 +53,6 @@ function findAllFiles(currentPath, foundFiles = []) {
     return foundFiles;
 }
 
-function generateCategory(filePath) {
-    fs.readdirSync(filePath).forEach(file => {
-    let fileName = path.parse(file).name;
-    console.log('<li><a onclick="javascript:goPage(\'/' +  path.basename(filePath) + '/' + fileName + '\')">' + fileName + '</a></li>');
-    });
-}
-
-
 function createIndexFile() {
     const FirstDepthDirectories = findSubDirectories(process.cwd() + "/blog");
     for(let i = 0; i < FirstDepthDirectories.length; i++) {
@@ -74,7 +66,7 @@ function createIndexFile() {
             let filePath = files[j].substr(files[j].indexOf("blog\\")).replaceAll("\\", "/");
             let noteName = filePath.substring(filePath.lastIndexOf("/")+1, filePath.indexOf(".md"));
             if ((noteName.indexOf("_") !== 0) && (filePath.indexOf(".md") > 0)) {
-                categoryMenu += '<li><a onclick="javascript:goPage(\'' +  filePath.substring(0, filePath.indexOf(".md")) + '\')">' + noteName + '</a></li>\n';
+                categoryMenu += '<li><a href="#content" onclick="javascript:goPage(\'' +  filePath.substring(0, filePath.indexOf(".md")) + '\')">' + noteName + '</a></li>\n';
             }
         }
 
@@ -108,7 +100,7 @@ function createIndexFile() {
                     ${categoryMenu}
                 </ul>
             </nav>
-            <article>
+            <article id="content">
                 <div id="viewer"></div>
             </article>
         </section>

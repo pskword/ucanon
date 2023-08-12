@@ -48,7 +48,7 @@ nav ul {
 
 article {
     float: left;
-    padding: 20px;
+    padding: 10px 20px 20px 20px;
     width: 70%;
     background-color: #fff;
     height: 100%;
@@ -81,13 +81,14 @@ footer {
 }
 
 h2.main_title {
-    margin: 10px 10px 10px 10px;
+    margin: 10px 10px 0px 10px;
 }
 
 .left_menu {
     font-size: 15px;
     cursor: pointer;
     overflow: hidden;
+    padding: 0px 10px 10px 10px;
 }
 
 .left_menu a:link {
