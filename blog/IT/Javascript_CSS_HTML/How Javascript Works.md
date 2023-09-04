@@ -28,7 +28,7 @@
 * DOM, AJAX, setTimeout 등이 Web API에 포함됩니다.
 
 * 이벤트 처리를 위한 Event Loop와 Callback Queue도 있습니다.
-![](blog/IT/Javascript_CSS_HTML/How_Javascript_Works.resouces/image1.png)
+![](/blog/IT/Javascript_CSS_HTML/How_Javascript_Works.resouces/image1.png)
 
 
 위의 화면은  Javascript 엔진의 아키텍처 구조입니다.
@@ -54,7 +54,7 @@ function printSquare(x) {
 printSquare(5);
 ```
 
-![](blog/IT/Javascript_CSS_HTML/How_Javascript_Works.resouces/image2.png)
+![](/blog/IT/Javascript_CSS_HTML/How_Javascript_Works.resouces/image2.png)
 
 * 콜 스택의 각각을 Stack Frame이라고 부릅니다.
 * 이것은 Exception가 발생했을 때 Stack Trace가 만들어지는 방식입니다.
@@ -78,7 +78,7 @@ foo();
 
 * 아래는 위의 코드가 실행되면서 Call Stack Overflowing에 빠지는 것을 설명한 그림입니다.
 
-![](blog/IT/Javascript_CSS_HTML/How_Javascript_Works.resouces/image3.png)
+![](/blog/IT/Javascript_CSS_HTML/How_Javascript_Works.resouces/image3.png)
 
 * 위의 Call Stack Overflowing이 발생하면 아래와 같은 에러 메시지가 표시됩니다.
 
