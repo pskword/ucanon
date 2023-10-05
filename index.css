@@ -71,10 +71,21 @@ footer {
 }
 
 /* Responsive layout - makes the two columns/boxes stack on top of each other instead of next to each other, on small screens */
-@media (max-width: 600px) {
 
+@media all and (min-width:769px) {
+    nav {
+        width: 30%;
+        height: auto;
+    }
+    article#content{
+        width: 70%;
+        height: auto;
+    }
+}
+
+@media all and (max-width:768px) {
     nav,
-    article {
+    article#content {
         width: 100%;
         height: auto;
     }
