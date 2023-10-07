@@ -55,6 +55,10 @@ article {
     /* only for demonstration, should be removed */
 }
 
+article.full {
+    padding: 0px;
+}
+
 /* Clear floats after the columns */
 section::after {
     content: "";
@@ -81,6 +85,11 @@ footer {
         width: 70%;
         height: auto;
     }
+
+    article#content.full{
+        width: 100%;
+        height: auto;
+    }    
 }
 
 @media all and (max-width:768px) {

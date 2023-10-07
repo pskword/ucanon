@@ -46,7 +46,9 @@ function loadWebPage(url, callback) {
     xhr.onload = function () {
         if (xhr.readyState === xhr.DONE && xhr.status === 200) {
             callback(xhr.responseText);
-            focusContent();
+            if (location.pathname !== "/content.html") {
+                focusContent();
+            }
         }
     };
 
