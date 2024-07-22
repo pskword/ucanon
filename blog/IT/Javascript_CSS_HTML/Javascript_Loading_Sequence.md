@@ -63,7 +63,7 @@ script 태그의 async 속성은 javascript 파일을 비동기적으로 로딩(
 <script async src="script.js"></script>
 ```
 
-![with-async](/blog/IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/with-async.png)
+![with-async](Javascript_Loading_Sequence.resources/with-async.png)
 
 
 ### async 의 문제점
@@ -83,7 +83,7 @@ Javascript에 async를 정의하면 HTML Parsing과 Javascript 다운로드를 �
 <script defer src="script.js"></script>
 ```
 script 태그의 defer 속성은 javascript 파일을 비동기적으로 서버에 요청에서 다운로드(fetch) 받지만, 다운로드 받은 javascript 파일의 실행은 HTML을 모두 파싱한 이후에 실행합니다.
-![with-defer](/blog/IT/Javascript_CSS_HTML/Javascript_Loading_Sequence.resources/with-defer.png)
+![with-defer](Javascript_Loading_Sequence.resources/with-defer.png)
 
 ## async & defer 지원 브라우저
 

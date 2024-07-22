@@ -10,11 +10,11 @@ function init() {
 }
 
 function setHistoryBackEvent() {
-	if (window.addEventListener) {
-		window.addEventListener("popstate", changePageState);
-	} else {
-		window.attachEvent("popstate", changePageState);
-	}
+    if (window.addEventListener) {
+        window.addEventListener("popstate", changePageState);
+    } else {
+        window.attachEvent("popstate", changePageState);
+    }
 }
 
 function changePageState() {
@@ -25,17 +25,43 @@ function changePageState() {
 
 function pushState(url) {
     if (url !== "") {
-	    history.pushState({ url : url }, "", "/#" + url);
+        history.pushState({ url: url }, "", "/#" + url);
     }
 }
 
 function loadViewer(content) {
     const Viewer = toastui.Editor;
     const codeSyntaxHighlight = Viewer.plugin.codeSyntaxHighlight;
+
+    // 이미지 처리를 위한 Set 생성
+    const processedImages = new Set();
+
     const viewer = new Viewer({
         el: document.querySelector("#viewer"),
         initialValue: content,
         plugins: [codeSyntaxHighlight],
+        customHTMLRenderer: {
+            image(node, context) {
+                const { src, alt } = node;
+
+                const ImageURL = "/" + document.location.hash.substring(1, document.location.hash.lastIndexOf("/") + 1) + node.destination  
+
+                // 이미 처리된 이미지인지 확인
+                if (processedImages.has(ImageURL)) {
+                    return false; // 이미 처리된 이미지는 기본 렌더링 사용
+                }
+                
+                // 새 이미지 처리
+                processedImages.add(ImageURL);
+
+                return {
+                    type: 'openTag',
+                    tagName: 'img',
+                    attributes: { src: ImageURL, alt },
+                    selfClose: true
+                };
+            }
+        }
     });
 }
 
