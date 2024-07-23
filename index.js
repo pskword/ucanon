@@ -41,13 +41,14 @@ function loadViewer(content) {
         initialValue: content,
         plugins: [codeSyntaxHighlight],
         customHTMLRenderer: {
-            image(node, context) {
+            image(node, context) {  
                 const { src, alt } = node;
 
                 const ImageURL = "/" + document.location.hash.substring(1, document.location.hash.lastIndexOf("/") + 1) + node.destination  
 
                 // 이미 처리된 이미지인지 확인
                 if (processedImages.has(ImageURL)) {
+                    processedImages.clear();
                     return false; // 이미 처리된 이미지는 기본 렌더링 사용
                 }
                 
