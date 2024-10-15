@@ -1,0 +1,154 @@
+{
+  "main": {
+    "id": "cdc6914bd27ce7ca",
+    "type": "split",
+    "children": [
+      {
+        "id": "4eba26ee66c64e1c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ca78f0b721b5b4ad",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "blog/IT/SoftwareEngineering/프로그래머로 사는 법 (Making it big on software).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "df8bd90d3162b166",
+    "type": "split",
+    "children": [
+      {
+        "id": "bfda7db712f97235",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7c9613f98ec61e3e",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "680093421d0b4072",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "9aa6a02963c19603",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "3bd7dde3f41a5018",
+    "type": "split",
+    "children": [
+      {
+        "id": "caacb70302a32af3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "f11dc7424c675a1c",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "blog/IT/SoftwareEngineering/프로그래머로 사는 법 (Making it big on software).md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "395aa6d317a381e8",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "blog/IT/SoftwareEngineering/프로그래머로 사는 법 (Making it big on software).md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "f78510e58dbeecec",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "1b065609d859ea3e",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "blog/IT/SoftwareEngineering/프로그래머로 사는 법 (Making it big on software).md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:퀵 스위처 열기": false,
+      "graph:그래프 뷰 열기": false,
+      "canvas:새 캔버스 만들기": false,
+      "daily-notes:오늘의 데일리 노트 열기": false,
+      "templates:템플릿 삽입": false,
+      "command-palette:명령어 팔레트 열기": false
+    }
+  },
+  "active": "7c9613f98ec61e3e",
+  "lastOpenFiles": [
+    "blog/IT/Web/서비스 워커와 웹 워커 비교.md",
+    "blog/IT/Web"
+  ]
+}
