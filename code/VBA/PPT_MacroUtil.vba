@@ -1,4 +1,4 @@
-Dim S_W As Single, S_H As Single
+Dim S_W As Single, S_H As Single, S_L As Single, S_T As Single
 
 Sub 객체위치복사()
     Dim S_RNG As PowerPoint.ShapeRange
