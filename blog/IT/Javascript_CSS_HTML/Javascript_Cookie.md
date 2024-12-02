@@ -293,8 +293,8 @@ javascript코드 복사fetch('https://example.com/api/data', {
 
 - **쿠키 전송**: 요청에 쿠키를 포함하거나, 서버에서 설정한 쿠키를 브라우저에 저장.
 - CORS와 함께 사용 : ﻿withCredentials를 사용하려면 서버도 적절히 구성되어 있어야 합니다.
-  - 서버 응답 헤더에 **`Access-Control-Allow-Credentials: true`**가 설정되어야 합니다.
-  - 서버 응답 헤더의 **`Access-Control-Allow-Origin`**은 와일드카드(`*`)를 사용할 수 없고, 요청을 보낸 정확한 출처를 명시해야 합니다.
+  - 서버 응답 헤더에 **Access-Control-Allow-Credentials: true**가 설정되어야 합니다.
+  - 서버 응답 헤더의 **Access-Control-Allow-Origin**은 와일드카드(`*`)를 사용할 수 없고, 요청을 보낸 정확한 출처를 명시해야 합니다.
 
 
 
@@ -303,13 +303,11 @@ javascript코드 복사fetch('https://example.com/api/data', {
 **CORS(Cross-Origin Resource Sharing)**를 지원하면서 `withCredentials` 옵션을 사용할 경우, 다음 조건을 충족해야 합니다:
 
 #### 클라이언트 설정:
-
 - `xhr.withCredentials = true` 또는 `credentials: 'include'`로 설정.
 
 #### 서버 설정:
-
-- **`Access-Control-Allow-Credentials: true`**를 응답 헤더에 포함.
-- **`Access-Control-Allow-Origin`**에 요청을 보낸 출처(URL)를 정확히 지정. `*`은 사용할 수 없음.
+- **Access-Control-Allow-Credentials: true**를 응답 헤더에 포함.
+- **Access-Control-Allow-Origin**에 요청을 보낸 출처(URL)를 정확히 지정. `*`은 사용할 수 없음.
 
 
 
