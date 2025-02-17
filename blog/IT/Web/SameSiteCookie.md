@@ -44,12 +44,13 @@ Chrome 브라우저는 2020년 2월 4일에 출시된 80버전부터 쿠키의 `
    - 프론트엔드와 백엔드를 동일한 최상위 도메인 하의 서브도메인으로 설정하여, 브라우저가 동일한 사이트로 인식하도록 합니다.
    - 예를 들어, 프론트엔드를 `frontend.example.com`, 백엔드를 `api.example.com`으로 설정합니다.
 3. **쿠키 대신 다른 저장소 사용**
-   - JWT 토큰을 쿠키 대신 **로컬 스토리지**나 **세션 스토리지**에 저장하여, `SameSite` 속성의 영향을 받지 않도록 합니다.
-   - 이 경우, **XSS(Cross-Site Scripting)** 공격에 대한 추가적인 보안 조치가 필요합니다.
+   - JSESSIONID 또는 JWT 토큰을 쿠키 대신 **로컬 스토리지**나 **세션 스토리지**에 저장하여 `SameSite` 속성의 영향을 받지 않도록 합니다.
+   - **로컬 스토리지**나 **세션 스토리지**에 저장된 JSESSIONID 또는 JWT 토큰을 서버와 주고받기 위해, 쿠키 대신 Request Header 및 Response Header에 설정하여 전송할 수 있습니다.
+   - WebSquare의 Submission을 통한 통신 시, Response Header에서 JSESSIONID 값을 가져오고 Request Header에 JSESSIONID 값을 설정하는 방법은 아래의 **6. WebSquare Submission Request & Response Header 핸들링**에서 설명하겠습니다.
+   - 서버 측에서 쿠키 대신 Request Header와 Response Header에 JSESSIONID 또는 JWT 토큰을 저장하는 방법은 현재 사용 중인 서버 프레임워크 환경에 맞게 별도로 구현해야 합니다.
+   - 쿠키가 아닌 다른 저장소를 사용할 경우, **XSS(Cross-Site Scripting)** 공격에 대비한 추가적인 보안 조치가 필요합니다.
 
-각 방법은 보안과 편의성 측면에서 장단점이 있으므로, 애플리케이션의 특성과 요구 사항에 따라 적절한 방안을 선택해야 합니다. 특히, `SameSite=None` 설정은 CSRF 공격에 취약할 수 있으므로, 추가적인 보안 조치를 고려해야 합니다. 또한, 브라우저마다 `SameSite` 속성에 대한 지원과 기본 값이 다를 수 있으므로, 다양한 브라우저 환경에서의 테스트도 중요합니다.
-
-
+**각 방법은 보안과 편의성 측면에서 장단점이 있으므로, 애플리케이션의 특성과 요구 사항에 따라 적절한 방안을 선택해야 합니다.** 
 
 
 
@@ -225,7 +226,93 @@ Nginx를 사용하는 경우, 다음과 같이 설정할 수 있습니다:
 
 
 
-## 6. 참고 사이트
+## 6. WebSquare Submission Request & Response Header 핸들링
+
+쿠키를 사용하면 서버와 데이터 통신 시 별도의 작업을 진행하지 않아도 웹 브라우저 쿠키에 저장된 JSESSIONID를 자동으로 서버에 전달하지만, 쿠키를 사용하지 않고 LocalStorage와 SessionStorage에 JSESSIONID를 저장하게 되면, 자동으로 JSESSIONID 값이 서버에 전달되지 않기 때문에, Submission를 이용해서 request를 보내고, response를 받을 때, JSESSIONID 값을 전달하고 받는 코드를 작성하셔야 합니다.
+
+WebSquare에서 서버와 데이터 통신을 위해서 사용하는 Submission에서 서버와 데이터를 송수신할 때, Request & Response Header를 통해서 JSESSIONID 값을 전달하고, 가져오는 방법을 소개합니다.
+
+
+
+### 6.1. Submission Request Header에 값 설정하기
+
+Submission Request Header에 값을 설정하기 위해서는 아래와 같이 setRequestHeader API를 사용하시면 됩니다.
+
+아래는 LocalStorage에 저장된 JSESSIONID 값을 가져와서, Submission Request Header에 "jsessionid"라는 Key로 JSESSIONID를 저장하는 예시 코드입니다.
+
+```javascript
+// Local Storage를 사용하시면 웹 브라우저가 종료된 이후에도 jsessionid 값이 유지됩니다.
+const jSessionId = localStorage.getItem("jsessionid");
+
+// Session Storage를 사용하시면 웹 브라우저가 종료되기 전까지 jsessionid 값이 유지됩니다.
+// const jSessionId = sessionStorage.getItem("jsessionid");
+submission1.setRequestHeader({ "jsessionid" : jSessionId });
+```
+
+$p.executeSubmission API로 submssion1를 실행하면  Submission Request Header에 "jsessionid"라는 Key로 JSESSIONID를 저장되어 서버에 전송이 됩니다.
+
+
+
+### 6.2. 모든 Submission 실행 시 Request Header에 JSESSIONID 전달하기
+
+모든 Submission 실행 시 Request Header에 JSESSIONID 전달하기 위해서는 웹스퀘어 클라이언트 설정 파일인 config.xml의 submission > preSubmitFunction 설정을 통해서 할 수 있습니다.
+
+```xml
+<submission>
+    <processMsg value=""/>
+    <showSubmissionTime value="true"/>
+    <!-- 아래와 같이 preSubmissionFunction을 함수명을 설정합니다. -->
+    <preSubmitFunction value="com.sbm.__preSubmitFunction"/>		
+</submission>
+```
+아래의 코드는 com.sbm.__preSubmitFunction 함수의 구현 예시 입니다.
+
+```javascript
+/**
+ * submission의 공통 설정에서 사용되며, submission 통신 직전 호출됨.
+ * return true일 경우 통신 수행, return false일 경우 통신 중단
+ * 
+ * @param {Object} sbmObj 서브미션 객체
+ * @returns {Boolean} 통신수행여부
+ */
+com.sbm.__preSubmitFunction = function (sbmObj) {
+    const jSessionId = localStorage.getItem("jsessionid");
+    // const jSessionId = sessionStorage.getItem("jsessionid");    
+    sbmObj.setRequestHeader({ "jsessionid" : jSessionId }); 
+};
+```
+
+
+
+### 6.3. Submission Response Header에서 값 가져오기
+
+Submission을 통해 서버에서 전달된 Response Header에서 JSESSIONID 값을 가져오는 방법은 다음과 같습니다.
+
+아래는 LocalStorage에 저장된 JSESSIONID 값을 가져와서, Submission Request Header에 "jsessionid"라는 Key로 JSESSIONID를 저장하는 예시 코드입니다.
+
+```javascript
+/**
+ * Submission 실행이 완료되면 실행되는, submitdone 이벤트의 첫번째 파라미터(e)에 서버에 전달한 Response Header, Response Body 데이터가 저장되어 있습니다.
+ */
+scwin.sbm_Login_submitdone = async function (e) {
+    // Response Header에 저장된 데이터를 JSON 객체로 변환해서 responseHeader에 저장합니다.
+    const responseHeader = JSON.parse(e.responseHeadersJSON);
+    const jSessionId = responseHeader.jsessionid;
+    
+    // localStorage에 Response Header에 저장되서 서버로 부터 전달받은 jsessionid 값을 저장합니다.
+    // Local Storage를 사용하시면 웹 브라우저가 종료된 이후에도 jsessionid 값이 유지됩니다.
+    localStorage.setItem("jsessionid", jSessionId);
+    
+    // Session Storage를 사용하시면 웹 브라우저가 종료되기 전까지 jsessionid 값이 유지됩니다.
+    // sessionStorage.setItem("jsessionid", jSessionId);
+};
+```
+
+
+
+
+
+## 7. 참고 사이트
 
 - https://chgbook.tistory.com/35
 - https://web.dev/articles/samesite-cookie-recipes?hl=ko
