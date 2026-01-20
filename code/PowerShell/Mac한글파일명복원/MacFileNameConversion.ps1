@@ -1,4 +1,4 @@
-﻿$path = "C:\Users\canon\Downloads\Mac파일명복원"
+﻿$path = "C:\Users\canon\Documents\_Mac파일명복원_"
 
 Get-ChildItem -Recurse -Path $path | Where-Object { $_.Extension -ne ".ps1" } | ForEach-Object {
     $oldName = $_.Name
