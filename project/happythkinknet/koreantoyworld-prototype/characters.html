@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Korean Toy Characters — KoreanToyWorld</title>
+<meta name="description" content="Browse Korean character toys IP-first — Tayo, Pororo, Catch! Teenieping, Robocar Poli and more. Part of KoreanToyShop.com.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div id="ktw-header"></div>
+
+<main>
+  <section class="container">
+    <div class="breadcrumb">
+      <a href="index.html">KoreanToyShop</a> › <a href="index.html">World</a> › <b>Characters</b>
+    </div>
+  </section>
+
+  <section class="container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Browse by IP</div>
+        <h1>Korean Toy Characters</h1>
+        <p class="lead muted" style="max-width:560px">Discover the worlds behind Korea's most-loved character toys — pick an IP to explore its series, latest products and trends.</p>
+      </div>
+    </div>
+    <div class="grid grid-4" id="charGrid"></div>
+  </section>
+</main>
+
+<div id="ktw-footer"></div>
+<button class="reward-fab" onclick="KTW.toast('Reward program — Smile.io style (stub)')">🎁 Rewards</button>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/components.js"></script>
+<script>
+  KTW.mountChrome('characters');
+  const D = KTW_DATA;
+
+  document.getElementById('charGrid').innerHTML =
+    D.characters.map(c => KTW.characterCard(c)).join('');
+</script>
+</body>
+</html>

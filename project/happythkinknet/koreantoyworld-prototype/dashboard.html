@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advertiser Dashboard — KoreanToyWorld</title>
+<meta name="description" content="Closed-loop advertiser dashboard — see how your KoreanToyWorld ads drive real KoreanToyShop sales. Impressions, CTR, clicks and attributed commerce revenue.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div id="ktw-header"></div>
+
+<main>
+  <section class="container">
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb">
+      <a href="https://koreantoyshop.com">KoreanToyShop</a> ›
+      <a href="index.html">World</a> ›
+      <b>Advertiser Dashboard</b>
+    </div>
+
+    <!-- TOP BAR -->
+    <div class="section-head" style="margin-bottom:20px">
+      <div>
+        <h1 style="margin:0 0 6px">Advertiser Dashboard</h1>
+        <p class="muted" style="margin:0">Closed-loop attribution — your ads → KoreanToyShop sales.</p>
+      </div>
+      <div class="row wrap" style="gap:10px;align-items:center">
+        <span class="badge badge-gold" title="Sample data for prototype">● Demo data</span>
+        <button class="chip is-active" onclick="setRange(this,'Last 7 days')">Last 7</button>
+        <button class="chip" onclick="setRange(this,'Last 30 days')">Last 30</button>
+        <button class="chip" onclick="setRange(this,'Last 90 days')">Last 90</button>
+        <select class="chip" id="campaignFilter" onchange="KTW.toast('Filtered to: ' + this.value + ' (prototype stub)')" style="appearance:auto">
+          <option>All campaigns</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- KPI ROW -->
+    <div class="grid grid-4" id="kpiRow" style="margin-bottom:22px"></div>
+
+    <!-- CHARTS ROW -->
+    <div class="grid grid-2" style="margin-bottom:22px">
+      <div class="card card-pad">
+        <div class="section-head" style="margin-bottom:12px">
+          <div><div class="kicker" style="color:#3D5AFE">Engagement</div><h2 style="font-size:1.25rem">Clicks — last 14 days</h2></div>
+        </div>
+        <div id="clicksChart"></div>
+      </div>
+      <div class="card card-pad">
+        <div class="section-head" style="margin-bottom:12px">
+          <div><div class="kicker" style="color:#06917f">Closed-loop revenue</div><h2 style="font-size:1.25rem">Attributed revenue — weekly ($)</h2></div>
+        </div>
+        <div id="revenueChart"></div>
+      </div>
+    </div>
+
+    <!-- FUNNEL -->
+    <div class="card card-pad" style="margin-bottom:22px">
+      <div class="section-head" style="margin-bottom:14px">
+        <div><div class="kicker">Attribution</div><h2 style="font-size:1.25rem">Ad → Commerce conversion funnel</h2></div>
+        <span class="badge badge-mint">Closed-loop</span>
+      </div>
+      <div id="funnel"></div>
+    </div>
+
+    <!-- CAMPAIGNS TABLE -->
+    <div class="card card-pad" style="margin-bottom:22px">
+      <div class="section-head" style="margin-bottom:14px">
+        <div><div class="kicker">Performance</div><h2 style="font-size:1.25rem">Campaigns</h2></div>
+        <button class="btn btn-ghost btn-sm" onclick="KTW.toast('CSV export — prototype stub')">⬇ Export CSV</button>
+      </div>
+      <div style="overflow-x:auto">
+        <table class="rank-table">
+          <thead><tr>
+            <th>Campaign</th><th>Slot</th><th>Period</th>
+            <th style="text-align:right">Impr.</th><th style="text-align:right">Clicks</th>
+            <th style="text-align:right">CTR</th><th style="text-align:right">Conv.</th>
+            <th style="text-align:right">Attributed Sales</th><th style="text-align:right">ROAS</th>
+            <th>Status</th>
+          </tr></thead>
+          <tbody id="campaignRows"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- MAKE-GOOD / GUARANTEE -->
+    <div class="section" style="padding-top:0">
+      <div class="grid grid-2">
+        <div class="card card-pad">
+          <div class="kicker" style="color:#06917f">Guaranteed impressions</div>
+          <h2 style="font-size:1.25rem;margin:.2em 0">Delivery vs guarantee</h2>
+          <div class="row spread" style="margin:14px 0 6px">
+            <span class="muted">Delivered <b class="num" style="color:var(--ktw-ink)">318,420</b> of <b class="num" style="color:var(--ktw-ink)">300,000</b> guaranteed</span>
+            <b class="num" style="font-size:1.1rem;color:#06917f">106%</b>
+          </div>
+          <div style="height:16px;background:var(--ktw-surface-2);border-radius:999px;overflow:hidden">
+            <div style="height:100%;width:100%;background:var(--ktw-grad-mint);border-radius:999px"></div>
+          </div>
+          <p class="muted" style="font-size:.85rem;margin-top:12px">
+            <span class="badge badge-mint">✓ Guarantee met</span>
+            No make-good credit due. Over-delivery is served at no extra charge.
+          </p>
+        </div>
+        <div class="card card-pad" style="background:var(--ktw-surface)">
+          <div class="kicker">How attribution works</div>
+          <h2 style="font-size:1.25rem;margin:.2em 0">Ad → real shop sales</h2>
+          <p class="muted" style="font-size:.9rem;margin-top:10px">
+            Every ad click carries a tagged referral link to KoreanToyShop.com
+            (<code>utm_source=koreantoyworld</code>). Purchases are matched back to your
+            campaign, so the <b>Attributed Sales</b> and <b>ROAS</b> above reflect real
+            commerce revenue — not just impressions.
+          </p>
+          <a class="btn btn-secondary btn-sm" style="margin-top:10px" href="advertise.html">View ad products →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="ktw-footer"></div>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/components.js"></script>
+<script>
+  KTW.mountChrome('');
+  const DB = KTW_DATA.dashboard;
+
+  // ---- KPI ROW (4th = hero "Attributed Sales") ----
+  document.getElementById('kpiRow').innerHTML = DB.kpis.map((k, i) => {
+    const hero = i === DB.kpis.length - 1;
+    const trendColor = k.up ? '#18B26B' : '#FF4757';
+    const arrow = k.up ? '▲' : '▼';
+    return `<div class="kpi"${hero ? ' style="border:1.5px solid #06917f"' : ''}>
+        <div class="label">${KTW.esc(k.label)}${hero ? ' <span class="badge badge-mint">Closed-loop</span>' : ''}</div>
+        <div class="val">${KTW.esc(k.value)}</div>
+        <div class="trend" style="color:${trendColor}">${arrow} ${KTW.esc(k.trend)}</div>
+      </div>`;
+  }).join('');
+
+  // ---- CHARTS ----
+  document.getElementById('clicksChart').innerHTML =
+    KTWChart.barChart(DB.daily, null, '#3D5AFE', { w: 560, h: 220 });
+  document.getElementById('revenueChart').innerHTML =
+    KTWChart.barChart(DB.revenue, ['W1','W2','W3','W4','W5','W6','W7'], '#00C8B4', { w: 560, h: 220 });
+
+  // ---- FUNNEL ----
+  document.getElementById('funnel').innerHTML = KTWChart.funnel(DB.funnel);
+
+  // ---- CAMPAIGNS TABLE ----
+  const statusBadge = (s) =>
+    s === 'Live'   ? '<span class="badge badge-mint">Live</span>' :
+    s === 'Ending' ? '<span class="badge badge-gold">Ending</span>' :
+                     '<span class="badge">Ended</span>';
+
+  document.getElementById('campaignRows').innerHTML = DB.campaigns.map(c =>
+    `<tr>
+      <td><b>${KTW.esc(c.name)}</b></td>
+      <td class="muted" style="font-size:.85rem">${KTW.esc(c.slot)}</td>
+      <td class="muted" style="font-size:.85rem">${KTW.esc(c.period)}</td>
+      <td class="num" style="text-align:right">${c.imp.toLocaleString()}</td>
+      <td class="num" style="text-align:right">${c.clicks.toLocaleString()}</td>
+      <td class="num" style="text-align:right">${KTW.esc(c.ctr)}</td>
+      <td class="num" style="text-align:right">${c.conv.toLocaleString()}</td>
+      <td class="num" style="text-align:right;font-weight:700;color:#06917f">${KTW.money(c.sales)}</td>
+      <td class="num" style="text-align:right;font-weight:700">${KTW.esc(c.roas)}</td>
+      <td>${statusBadge(c.status)}</td>
+    </tr>`).join('');
+
+  // populate campaign filter from data
+  const sel = document.getElementById('campaignFilter');
+  DB.campaigns.forEach(c => {
+    const o = document.createElement('option');
+    o.textContent = c.name; sel.appendChild(o);
+  });
+
+  // ---- date range chips (visual stub) ----
+  function setRange(btn, label) {
+    document.querySelectorAll('.chip.is-active').forEach(c => {
+      if (c.tagName === 'BUTTON') c.classList.remove('is-active');
+    });
+    btn.classList.add('is-active');
+    KTW.toast(label + ' (prototype stub — demo data unchanged)');
+  }
+  window.setRange = setRange;
+</script>
+</body>
+</html>

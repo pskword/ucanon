@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K-Toy News & Exhibitions — KoreanToyWorld</title>
+<meta name="description" content="K-Toy news, new launches, brand news and exhibition recaps. Stay on top of Korean character toy trends — part of KoreanToyShop.com.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div id="ktw-header"></div>
+
+<main>
+  <section class="container">
+    <div class="breadcrumb">
+      <a href="https://koreantoyshop.com" target="_blank" rel="noopener">KoreanToyShop</a> ›
+      <a href="index.html">World</a> › <b>News</b>
+    </div>
+    <div class="section-head" style="margin-bottom:14px">
+      <div><div class="kicker">K-Toy news</div><h1 style="margin:0">K-Toy News &amp; Exhibitions</h1></div>
+    </div>
+    <div class="row wrap" id="newsChips" style="margin-bottom:24px"></div>
+  </section>
+
+  <!-- FEATURED EXHIBITION SHOWCASE -->
+  <section class="section-sm container">
+    <div id="newsFeatured"></div>
+  </section>
+
+  <!-- ARTICLE GRID -->
+  <section class="section container" style="padding-top:0">
+    <div class="grid grid-3" id="newsGrid"></div>
+  </section>
+</main>
+
+<div id="ktw-footer"></div>
+<button class="reward-fab" onclick="KTW.toast('Reward program — Smile.io style (stub)')">🎁 Rewards</button>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/components.js"></script>
+<script>
+  KTW.mountChrome('news');
+  const D = KTW_DATA;
+
+  const CATS = ['All', 'New Launch', 'Exhibition', 'Brand News'];
+  let activeCat = 'All';
+
+  // Featured exhibition showcase (first Exhibition item)
+  const feat = D.news.find(n => n.cat === 'Exhibition') || D.news[0];
+  document.getElementById('newsFeatured').innerHTML =
+    `<article class="card" style="padding:0;overflow:hidden">
+       <div class="hero-split" style="gap:0">
+         <div style="position:relative;min-height:280px">
+           ${KTW.ph(feat.cat, feat.color, '', '100%')}
+           <span class="badge badge-gold" style="position:absolute;top:14px;left:14px">★ Toy Exhibition Showcase</span>
+         </div>
+         <div style="padding:32px">
+           <span class="badge badge-blue">${KTW.esc(feat.cat)}</span>
+           <h2 style="margin:10px 0 8px">${KTW.esc(feat.title)}</h2>
+           <div class="muted" style="font-size:.82rem;margin-bottom:10px">${KTW.esc(feat.date)}</div>
+           <p class="muted">${KTW.esc(feat.excerpt)}</p>
+           <a class="btn btn-secondary" href="#"
+              onclick="KTW.toast('Article — prototype stub');return false">Read the recap →</a>
+         </div>
+       </div>
+     </article>`;
+
+  // Category chips
+  function renderChips() {
+    document.getElementById('newsChips').innerHTML =
+      CATS.map(c => `<button class="chip ${c === activeCat ? 'is-active' : ''}"
+        data-cat="${KTW.esc(c)}">${KTW.esc(c)}</button>`).join('');
+    document.querySelectorAll('#newsChips .chip').forEach(ch =>
+      ch.addEventListener('click', () => { activeCat = ch.dataset.cat; renderChips(); renderGrid(); }));
+  }
+
+  function renderGrid() {
+    const list = activeCat === 'All' ? D.news : D.news.filter(n => n.cat === activeCat);
+    const grid = document.getElementById('newsGrid');
+    if (!list.length) { grid.innerHTML = `<p class="muted">No articles in this category yet.</p>`; return; }
+    grid.innerHTML = list.map(n =>
+      `<a class="card article-card" href="#"
+          onclick="KTW.toast('Article — prototype stub');return false">
+         <div class="media">${KTW.ph(n.cat, n.color, '', '100%')}</div>
+         <div class="body">
+           <span class="badge badge-blue">${KTW.esc(n.cat)}</span>
+           <div class="name">${KTW.esc(n.title)}</div>
+           <div class="muted" style="font-size:.8rem">${KTW.esc(n.date)}</div>
+           <p class="muted" style="font-size:.88rem;margin:8px 0 0">${KTW.esc(n.excerpt)}</p>
+         </div>
+       </a>`).join('');
+  }
+
+  renderChips();
+  renderGrid();
+</script>
+</body>
+</html>

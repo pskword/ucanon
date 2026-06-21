@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>K-Toy Trend Intelligence — KoreanToyWorld</title>
+<meta name="description" content="K-Toy Trend Intelligence — a monthly data subscription built on 87,000+ SKU of live Korean-toy pricing, search and sales data. Rankings, demand trends, competitor benchmarks & CSV/API export for manufacturers and retailers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div id="ktw-header"></div>
+
+<main>
+  <!-- BREADCRUMB -->
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">KoreanToyShop</a> ›
+      <a href="index.html">World</a> ›
+      <b>Trends · Data</b>
+    </div>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section class="section-sm container">
+    <div class="kicker" style="color:var(--ktw-primary-ink);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.82rem">Trend Intelligence</div>
+    <h1 style="margin-top:8px;max-width:14ch">K-Toy Trend Intelligence</h1>
+    <p class="lead muted" style="font-size:1.1rem;max-width:600px">Powered by 87,000+ SKU of live Korean-toy pricing, search &amp; sales data.</p>
+    <div class="row wrap" style="margin-top:18px">
+      <a class="btn btn-grad" href="#plans">View plans</a>
+      <button class="btn btn-ghost" onclick="KTW.toast('Sample report download — stubbed in prototype')">⬇ Download sample report</button>
+    </div>
+    <div class="row wrap" style="margin-top:18px;gap:10px">
+      <span class="badge dot">87,000+ SKU tracked</span>
+      <span class="badge dot">Daily price &amp; search refresh</span>
+      <span class="badge dot">CSV / API export</span>
+      <span class="badge dot">12 IPs · 7 manufacturers</span>
+    </div>
+  </section>
+
+  <!-- FREE PREVIEW -->
+  <section class="section container" id="preview">
+    <div class="section-head">
+      <div>
+        <div class="kicker" style="color:#06917f">Free preview</div>
+        <h2>A taste of the live dataset</h2>
+      </div>
+      <span class="badge badge-mint">No subscription required</span>
+    </div>
+
+    <div class="grid grid-3">
+      <!-- (a) Demand index line chart (spans 2 cols on desktop) -->
+      <div class="card card-pad" style="grid-column:span 2">
+        <div class="row spread" style="margin-bottom:6px">
+          <h3 style="margin:0">Character demand index — last 6 months</h3>
+          <span class="badge badge-blue">Index 0–100</span>
+        </div>
+        <div id="demandChart"></div>
+        <div class="row wrap" id="demandLegend" style="margin-top:12px;gap:16px"></div>
+      </div>
+
+      <!-- (b) Rising searches -->
+      <div class="card card-pad">
+        <h3 style="margin:0 0 4px">Rising searches</h3>
+        <div class="muted" style="font-size:.82rem;margin-bottom:12px">Search interest, last 30 days</div>
+        <div id="risingList"></div>
+      </div>
+
+      <!-- (c) Category share donut -->
+      <div class="card card-pad" style="grid-column:span 3">
+        <div class="row spread" style="margin-bottom:6px">
+          <h3 style="margin:0">Category share — sales mix</h3>
+          <span class="badge badge-pink">Top IPs</span>
+        </div>
+        <div class="row wrap" style="gap:32px;align-items:center;margin-top:6px">
+          <div id="shareChart"></div>
+          <div id="shareLegend" style="flex:1;min-width:220px"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LOCKED / PAYWALL -->
+  <section class="section-sm container">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Subscriber report</div>
+        <h2>Detailed SKU intelligence</h2>
+      </div>
+    </div>
+
+    <div class="card card-pad paywall">
+      <div class="locked" aria-hidden="true">
+        <div class="row spread" style="margin-bottom:12px">
+          <b>SKU price &amp; competitor benchmark — June 2026</b>
+          <span class="badge badge-blue">Live · 87,043 SKU</span>
+        </div>
+        <table class="rank-table">
+          <thead>
+            <tr>
+              <th>SKU</th><th>Product</th><th>Our price</th>
+              <th>Market avg</th><th>Competitor low</th><th>Index vs market</th><th>Demand</th>
+            </tr>
+          </thead>
+          <tbody id="lockedRows"></tbody>
+        </table>
+      </div>
+      <div class="gate">
+        <span class="badge badge-pink" style="margin-bottom:12px">🔒 Subscribers only</span>
+        <h3 style="max-width:30ch">Detailed SKU reports, CSV export &amp; competitor benchmarks are for subscribers</h3>
+        <p class="muted" style="max-width:40ch">Track every SKU's price position against the market, export to CSV/API and benchmark against competitors — updated daily.</p>
+        <a class="btn btn-primary" href="#plans">Unlock with a plan</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO IS THIS FOR? -->
+  <section class="section-sm container">
+    <div class="card card-pad" style="background:var(--ktw-surface)">
+      <div class="kicker" style="color:var(--ktw-primary-ink);font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.82rem">Who is this for?</div>
+      <div class="grid grid-3" style="margin-top:16px">
+        <div>
+          <h3 style="margin:0 0 4px">Manufacturers</h3>
+          <p class="muted" style="margin:0;font-size:.92rem">“Where and at what price is my new toy selling?” See live demand, pricing and rank for every one of your SKUs.</p>
+        </div>
+        <div>
+          <h3 style="margin:0 0 4px">Retailers &amp; buyers</h3>
+          <p class="muted" style="margin:0;font-size:.92rem">Spot rising characters before they peak and stock the right K-Toys at the right margin.</p>
+        </div>
+        <div>
+          <h3 style="margin:0 0 4px">Licensors &amp; analysts</h3>
+          <p class="muted" style="margin:0;font-size:.92rem">Track category share and competitor moves across 12 IPs and 7 manufacturers in one dashboard.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section class="section container" id="plans">
+    <div class="section-head">
+      <div>
+        <div class="kicker">Pricing</div>
+        <h2>Subscribe to the data</h2>
+      </div>
+      <span class="badge badge-mint">Monthly · cancel anytime</span>
+    </div>
+    <div class="grid grid-3" id="plansGrid"></div>
+    <p class="muted center" style="margin-top:20px;font-size:.85rem">Prototype: checkout is stubbed. All plans include the 87,000+ SKU dataset, refreshed daily.</p>
+  </section>
+</main>
+
+<div id="ktw-footer"></div>
+<button class="reward-fab" onclick="KTW.toast('Reward program — Smile.io style (stub)')">🎁 Rewards</button>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/components.js"></script>
+<script>
+  KTW.mountChrome('trends');
+  const T = KTW_DATA.trends;
+
+  // (a) Demand index line chart + legend
+  document.getElementById('demandChart').innerHTML =
+    KTWChart.lineChart(T.series, T.months, { w: 560, h: 260 });
+  document.getElementById('demandLegend').innerHTML =
+    T.series.map(s =>
+      `<span class="row" style="gap:7px;font-size:.85rem;font-weight:600">
+        <span style="width:11px;height:11px;border-radius:50%;background:${s.color};display:inline-block"></span>
+        ${KTW.esc(s.label)}</span>`).join('');
+
+  // (b) Rising searches
+  document.getElementById('risingList').innerHTML =
+    T.rising.map(r =>
+      `<div class="row spread" style="padding:9px 0;border-bottom:1px dashed var(--ktw-line)">
+        <span style="font-weight:600;font-size:.9rem">${KTW.esc(r.kw)}</span>
+        <span class="badge badge-mint">▲ ${r.change}%</span>
+      </div>`).join('');
+
+  // (c) Category share donut + legend
+  document.getElementById('shareChart').innerHTML = KTWChart.donut(T.share);
+  document.getElementById('shareLegend').innerHTML =
+    T.share.map(s =>
+      `<div class="row spread" style="padding:7px 0;border-bottom:1px dashed var(--ktw-line)">
+        <span class="row" style="gap:8px;font-size:.9rem;font-weight:600">
+          <span style="width:11px;height:11px;border-radius:3px;background:${s.color};display:inline-block"></span>
+          ${KTW.esc(s.label)}</span>
+        <b class="num">${s.value}%</b>
+      </div>`).join('');
+
+  // LOCKED report mock — fabricated competitor compare rows built from real products
+  const idx = (now, avg) => Math.round((now / avg) * 100);
+  document.getElementById('lockedRows').innerHTML =
+    KTW_DATA.products.slice(0, 6).map(p => {
+      const avg = +(p.now * 1.08).toFixed(2);
+      const low = +(p.now * 0.93).toFixed(2);
+      const i = idx(p.now, avg);
+      return `<tr>
+        <td class="num">${p.id}</td>
+        <td><b>${KTW.esc(p.name)}</b><div class="muted" style="font-size:.74rem">${KTW.esc(KTW.brandName(p.brand))}</div></td>
+        <td class="num">${KTW.money(p.now)}</td>
+        <td class="num">${KTW.money(avg)}</td>
+        <td class="num">${KTW.money(low)}</td>
+        <td><span class="${i <= 100 ? 'delta-up' : 'delta-down'}">${i}</span></td>
+        <td>${KTWChart.sparkline(KTW_DATA.rankings[p.id.length % 10].spark, KTW.charColor(p.character))}</td>
+      </tr>`;
+    }).join('');
+
+  // PLANS — pricing cards from KTW_DATA.trends.plans
+  document.getElementById('plansGrid').innerHTML =
+    T.plans.map(pl =>
+      `<div class="pricing${pl.featured ? ' is-featured' : ''}">
+        ${pl.featured ? '<span class="badge badge-pink" style="align-self:flex-start;margin-bottom:8px">Most popular</span>' : ''}
+        <div class="plan">${KTW.esc(pl.plan)}</div>
+        <div class="amt">${KTW.esc(pl.price)}<span class="muted" style="font-size:.95rem;font-weight:600">${KTW.esc(pl.per)}</span></div>
+        <ul>${pl.items.map(it => `<li>${KTW.esc(it)}</li>`).join('')}</ul>
+        <button class="btn btn-grad btn-block" style="margin-top:auto"
+          onclick="KTW.toast('Checkout stubbed in prototype')">Choose ${KTW.esc(pl.plan)}</button>
+      </div>`).join('');
+</script>
+</body>
+</html>

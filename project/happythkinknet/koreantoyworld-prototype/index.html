@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KoreanToyWorld — Discover Korean Character Toys</title>
+<meta name="description" content="KoreanToyWorld — a K-Toy media & data platform. Discover rankings, character spotlights and trends for Korean character toys. Part of KoreanToyShop.com.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div id="ktw-header"></div>
+
+<main>
+  <!-- HERO -->
+  <section class="container" style="padding-top:28px">
+    <div class="hero">
+      <div class="hero-split">
+        <div>
+          <span class="badge" style="background:rgba(255,255,255,.2);color:#fff">🇰🇷 K-Toy Media Platform</span>
+          <h1>Bringing Korean Toys to the World</h1>
+          <p class="lead">Discover what's hot in K-Toys — live rankings, character spotlights and trend data — then buy authentic, KC-certified toys shipped from Seoul.</p>
+          <div class="row wrap" style="margin-top:18px">
+            <a class="btn btn-ghost" href="rankings.html">Explore Rankings</a>
+            <a class="btn btn-primary" href="trends.html">🔔 Subscribe to Trends</a>
+          </div>
+        </div>
+        <div class="grid grid-2" style="gap:14px" id="heroCollage"></div>
+      </div>
+    </div>
+    <div style="margin-top:22px">
+      <div id="trust"></div>
+    </div>
+  </section>
+
+  <!-- WEEKLY TOP 10 -->
+  <section class="section container">
+    <div class="section-head">
+      <div><div class="kicker">This week</div><h2>Weekly Top 10</h2></div>
+      <a class="btn btn-ghost btn-sm" href="rankings.html">Full rankings →</a>
+    </div>
+    <div class="hscroll" id="top10"></div>
+  </section>
+
+  <!-- CHARACTER SPOTLIGHT (sponsored feature) -->
+  <section class="section-sm container">
+    <div class="card is-sponsored" style="padding:0;overflow:hidden">
+      <span class="badge-sponsored badge">Sponsored · Character Spotlight</span>
+      <div class="hero-split" style="gap:0">
+        <div id="spotlightArt" style="min-height:280px"></div>
+        <div style="padding:32px">
+          <div class="kicker">Character Spotlight</div>
+          <h2 id="spotlightName"></h2>
+          <p id="spotlightTag" class="muted"></p>
+          <a class="btn btn-secondary" id="spotlightLink" href="#">Explore the world →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED COLLECTION / MONTHLY PROMOTION -->
+  <section class="section container">
+    <div class="section-head">
+      <div><div class="kicker">Editor's picks</div><h2>Featured Collection</h2></div>
+      <span class="badge badge-pink">Monthly Promotion · up to 22% off</span>
+    </div>
+    <div class="grid grid-4" id="featured"></div>
+  </section>
+
+  <!-- TRENDING NOW -->
+  <section class="section-sm container">
+    <div class="card card-pad" style="background:var(--ktw-surface)">
+      <div class="section-head" style="margin-bottom:14px">
+        <div><div class="kicker" style="color:#06917f">Trend Intelligence</div><h2 style="font-size:1.5rem">Trending Now ↗</h2></div>
+        <a class="btn btn-ghost btn-sm" href="trends.html">See trend data →</a>
+      </div>
+      <div class="grid grid-3" id="trending"></div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section class="section container">
+    <div class="section-head"><div><div class="kicker">K-Toy news</div><h2>From the News</h2></div>
+      <a class="btn btn-ghost btn-sm" href="news.html">All news →</a></div>
+    <div class="grid grid-3" id="news"></div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section-sm container">
+    <div class="section-head"><div><div class="kicker">Trust</div><h2>Real Reviews From Real Collectors</h2></div></div>
+    <div class="grid grid-3" id="reviews"></div>
+  </section>
+
+  <!-- NEWSLETTER -->
+  <section class="section container">
+    <div class="newsletter">
+      <div class="kicker" style="color:#fff;opacity:.85">Never miss a drop</div>
+      <h2>Get the Weekly K-Toy Trend Digest</h2>
+      <p style="opacity:.95">Rankings, new launches and rising characters — straight to your inbox.</p>
+      <form class="news-form" onsubmit="KTW.toast('Subscribed (prototype stub)');return false">
+        <input type="email" placeholder="you@email.com" required>
+        <button class="btn btn-primary" type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<div id="ktw-footer"></div>
+<button class="reward-fab" onclick="KTW.toast('Reward program — Smile.io style (stub)')">🎁 Rewards</button>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/components.js"></script>
+<script>
+  KTW.mountChrome('home');
+  const D = KTW_DATA;
+
+  document.getElementById('trust').innerHTML = KTW.trustStrip();
+
+  // hero collage — 4 character color blocks
+  document.getElementById('heroCollage').innerHTML =
+    D.characters.slice(0, 4).map(c =>
+      `<div style="border-radius:16px;overflow:hidden">${KTW.ph(c.name, c.color, c.ko, '120px')}</div>`).join('');
+
+  // Weekly Top 10 — product cards
+  document.getElementById('top10').innerHTML =
+    D.rankings.slice(0, 10).map(r => {
+      const p = D.products.find(x => x.id === r.sku);
+      const card = KTW.productCard(p);
+      return card.replace('<div class="thumb">',
+        `<div class="thumb"><span class="ribbon badge badge-gold" style="left:auto;right:12px">#${r.rank}</span><div style="display:none"></div>`);
+    }).join('');
+
+  // Character Spotlight (first character)
+  const sp = D.characters[2]; // Teenieping — trending
+  document.getElementById('spotlightArt').innerHTML = KTW.ph(sp.name, sp.color, sp.ko, '100%');
+  document.getElementById('spotlightName').textContent = sp.name;
+  document.getElementById('spotlightTag').textContent = sp.tagline + ' — ' + KTW.brandName(sp.brand);
+  document.getElementById('spotlightLink').href = 'character.html?slug=' + sp.slug;
+
+  // Featured collection
+  document.getElementById('featured').innerHTML =
+    D.products.filter(p => p.new).slice(0, 4).map(p => KTW.productCard(p)).join('');
+
+  // Trending now (rising keywords as cards)
+  document.getElementById('trending').innerHTML =
+    D.trends.rising.slice(0, 3).map(t =>
+      `<div class="card card-pad"><div class="row spread">
+        <b>${KTW.esc(t.kw)}</b><span class="badge badge-mint">▲ ${t.change}%</span></div>
+        <div class="muted" style="font-size:.8rem;margin-top:6px">search interest, last 30 days</div></div>`).join('');
+
+  // News
+  document.getElementById('news').innerHTML =
+    D.news.slice(0, 3).map(n =>
+      `<a class="card article-card" href="news.html">
+        <div class="media">${KTW.ph(n.cat, n.color, '', '100%')}</div>
+        <div class="body"><span class="badge badge-blue">${n.cat}</span>
+        <div class="name">${KTW.esc(n.title)}</div>
+        <div class="muted" style="font-size:.8rem">${n.date}</div></div></a>`).join('');
+
+  // Reviews
+  document.getElementById('reviews').innerHTML =
+    D.reviews.map(r =>
+      `<div class="review"><div class="stars">${KTW.stars(r.stars)}</div>
+       <p style="margin:8px 0">"${KTW.esc(r.text)}"</p>
+       <div class="muted" style="font-size:.82rem">${KTW.esc(r.name)}</div></div>`).join('');
+</script>
+</body>
+</html>

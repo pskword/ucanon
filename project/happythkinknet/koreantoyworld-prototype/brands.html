@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manufacturer Directory — KoreanToyWorld</title>
+<meta name="description" content="Browse Korean toy manufacturers and brands — ICONIX, SAMG, Young Toys and more. Explore catalogs, characters and launch news on KoreanToyWorld.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div id="ktw-header"></div>
+
+<main>
+  <section class="container">
+    <nav class="breadcrumb">
+      <a href="index.html">KoreanToyShop</a> › <a href="index.html">World</a> › <b>Brands</b>
+    </nav>
+    <div class="section-head" style="margin-bottom:8px">
+      <div>
+        <div class="kicker">Who makes K-Toys</div>
+        <h1>Manufacturer Directory</h1>
+      </div>
+    </div>
+    <p class="lead muted" style="max-width:620px;margin-top:0">
+      Discover the studios and manufacturers behind Korea's favorite character toys — their catalogs, the IPs they own and their latest global launches.
+    </p>
+  </section>
+
+  <section class="section-sm container">
+    <div class="grid grid-4" id="brandGrid"></div>
+  </section>
+</main>
+
+<div id="ktw-footer"></div>
+<button class="reward-fab" onclick="KTW.toast('Reward program — Smile.io style (stub)')">🎁 Rewards</button>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/components.js"></script>
+<script>
+  KTW.mountChrome('brands');
+  const D = KTW_DATA;
+
+  // All brand cards + a supply-side CTA card (prompt §4 P4)
+  const cards = D.brands.map(b => KTW.brandCard(b)).join('');
+  const cta = `<a class="card card-pad bcard is-sponsored" href="advertise.html"
+      style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center">
+      <span class="badge-sponsored badge">For Manufacturers</span>
+      <div class="logo" style="background:var(--ktw-grad);margin-top:12px">+</div>
+      <h3 style="margin:.2em 0">Are you a manufacturer?</h3>
+      <div class="muted" style="font-size:.82rem">Get your own Brand Page →</div></a>`;
+
+  document.getElementById('brandGrid').innerHTML = cards + cta;
+</script>
+</body>
+</html>

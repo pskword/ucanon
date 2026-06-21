@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Advertise — Put Your K-Toy in Front of the World | KoreanToyWorld</title>
+<meta name="description" content="Advertise on KoreanToyWorld — guaranteed-impression CPM/CPC placements with closed-loop attribution that proves ad-driven sales on KoreanToyShop.com.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div id="ktw-header"></div>
+
+<main>
+  <section class="container">
+    <div class="breadcrumb">
+      <a href="https://koreantoyshop.com" target="_blank" rel="noopener">KoreanToyShop</a> ›
+      <a href="index.html">World</a> › <b>Advertise</b>
+    </div>
+  </section>
+
+  <!-- HERO -->
+  <section class="container" style="padding-top:8px">
+    <div class="hero">
+      <div class="hero-split">
+        <div>
+          <span class="badge" style="background:rgba(255,255,255,.2);color:#fff">📈 For brands & manufacturers</span>
+          <h1>Put your K-Toy in front of the world's collectors</h1>
+          <p class="lead">Reach global K-Toy fans where they discover, rank and research Korean character toys — with guaranteed impressions and attribution that proves real sales.</p>
+          <div class="row wrap" style="margin-top:18px">
+            <a class="btn btn-primary" href="#" onclick="KTW.toast('Media kit requested — prototype stub');return false">Request Media Kit</a>
+            <a class="btn btn-ghost" href="dashboard.html">Go to Dashboard →</a>
+          </div>
+        </div>
+        <div class="grid grid-2" style="gap:14px" id="adCollage"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY — closed-loop value -->
+  <section class="section container">
+    <div class="section-head"><div><div class="kicker">Why KoreanToyWorld</div><h2>Not a list-price banner. A measurable channel.</h2></div></div>
+    <div class="grid grid-3">
+      <div class="card card-pad">
+        <span class="badge badge-blue">Guaranteed</span>
+        <h3 style="margin:12px 0 6px">Guaranteed impressions</h3>
+        <p class="muted" style="margin:0">Every placement ships with a contracted monthly impression volume — never a vague "list price with no reach".</p>
+      </div>
+      <div class="card card-pad">
+        <span class="badge badge-mint">CPM · CPC</span>
+        <h3 style="margin:12px 0 6px">Performance pricing</h3>
+        <p class="muted" style="margin:0">Pay on a CPM or CPC basis tied to real delivery, so every won spent maps to measurable audience.</p>
+      </div>
+      <div class="card card-pad">
+        <span class="badge badge-pink">Closed-loop</span>
+        <h3 style="margin:12px 0 6px">Closed-loop attribution</h3>
+        <p class="muted" style="margin:0">We prove ad → real KoreanToyShop sales with UTM tracking, so you see ROAS, not just clicks.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- AD PRODUCTS -->
+  <section class="section container" style="padding-top:0">
+    <div class="section-head"><div><div class="kicker">Placements</div><h2>Advertising products</h2></div>
+      <a class="btn btn-ghost btn-sm" href="dashboard.html">See live performance →</a></div>
+    <div class="grid grid-3" id="adGrid"></div>
+  </section>
+
+  <!-- CLOSING CTA -->
+  <section class="section container">
+    <div class="newsletter">
+      <div class="kicker" style="color:#fff;opacity:.85">Ready to launch</div>
+      <h2>Reach collectors, then prove the sales</h2>
+      <p style="opacity:.95">Track impressions, clicks and attributed revenue in real time — or start from the data.</p>
+      <div class="row wrap" style="justify-content:center;margin-top:18px">
+        <a class="btn btn-primary" href="dashboard.html">Advertiser Dashboard →</a>
+        <a class="btn btn-ghost" href="trends.html">Explore Trend Data →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<div id="ktw-footer"></div>
+<button class="reward-fab" onclick="KTW.toast('Reward program — Smile.io style (stub)')">🎁 Rewards</button>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/components.js"></script>
+<script>
+  KTW.mountChrome('');
+  const D = KTW_DATA;
+
+  // Hero collage — character color blocks
+  document.getElementById('adCollage').innerHTML =
+    D.characters.slice(0, 4).map(c =>
+      `<div style="border-radius:16px;overflow:hidden">${KTW.ph(c.name, c.color, c.ko, '120px')}</div>`).join('');
+
+  // Ad product grid
+  document.getElementById('adGrid').innerHTML =
+    D.adProducts.map(a => {
+      const flagship = /Trend Intelligence/i.test(a.name);
+      const href = flagship ? 'trends.html' : null;
+      const open = href ? `<a class="card card-pad ${flagship ? 'is-featured-ish' : ''}" href="${href}"` : `<div class="card card-pad"`;
+      const close = href ? `</a>` : `</div>`;
+      return `${open} style="display:block;border:${flagship ? '2px solid var(--ktw-primary)' : '1px solid var(--ktw-line)'}">
+          <div class="row spread" style="align-items:flex-start">
+            <h3 style="margin:0">${KTW.esc(a.name)}</h3>
+            ${flagship ? '<span class="badge badge-gold">★ Flagship</span>' : ''}
+          </div>
+          <div class="row wrap" style="margin:10px 0">
+            <span class="badge badge-blue">${KTW.esc(a.model)}</span>
+            ${a.makegood ? '<span class="badge badge-mint">Guaranteed + make-good credit</span>' : ''}
+          </div>
+          <div class="muted" style="font-size:.85rem">Reach: <b style="color:var(--ktw-ink)">${KTW.esc(a.impressions)}</b></div>
+          <div style="font-family:var(--font-head);font-weight:800;font-size:1.2rem;margin:6px 0">${KTW.esc(a.price)}</div>
+          <p class="muted" style="font-size:.88rem;margin:8px 0 0">${KTW.esc(a.desc)}</p>
+          ${flagship ? '<div class="btn btn-secondary btn-sm" style="margin-top:14px">Explore trend data →</div>' : ''}
+        ${close}`;
+    }).join('');
+</script>
+</body>
+</html>

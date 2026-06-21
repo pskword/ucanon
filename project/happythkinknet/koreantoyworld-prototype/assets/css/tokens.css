@@ -1,0 +1,53 @@
+/* ===========================================================================
+   KoreanToyWorld — Design Tokens (Phase 0/1 contract — DO NOT change in Phase 2)
+   Ref: prompt §2.2~2.4
+   =========================================================================== */
+:root {
+  /* Base surfaces */
+  --ktw-bg: #FFFFFF;
+  --ktw-surface: #F7F8FB;
+  --ktw-surface-2: #EEF1F7;
+  --ktw-ink: #1A1B2E;
+  --ktw-ink-soft: #5A5C72;
+  --ktw-line: #ECEEF3;
+
+  /* Brand / point colors */
+  --ktw-primary: #FF4D8D;   /* K-Toy pink */
+  --ktw-primary-ink: #D81B60;
+  --ktw-secondary: #3D5AFE; /* cobalt — links/CTA */
+  --ktw-accent: #FFC400;    /* yellow — rank/highlight */
+  --ktw-mint: #00C8B4;      /* data/trend */
+
+  /* Rank medals */
+  --ktw-rank-gold: #F5B301;
+  --ktw-rank-silver: #B8C0CC;
+  --ktw-rank-bronze: #CD7F4E;
+
+  /* States */
+  --ktw-success: #18B26B;
+  --ktw-danger: #FF4757;
+
+  /* Gradient */
+  --ktw-grad: linear-gradient(135deg, #FF4D8D 0%, #3D5AFE 100%);
+  --ktw-grad-mint: linear-gradient(135deg, #00C8B4 0%, #3D5AFE 100%);
+
+  /* Radius */
+  --r-card: 20px;
+  --r-img: 16px;
+  --r-pill: 999px;
+  --r-sm: 10px;
+
+  /* Shadow */
+  --sh-soft: 0 8px 30px rgba(26, 27, 46, .08);
+  --sh-hover: 0 14px 40px rgba(26, 27, 46, .16);
+  --sh-sm: 0 2px 10px rgba(26, 27, 46, .06);
+
+  /* Type */
+  --font-head: "Poppins", "Pretendard", system-ui, sans-serif;
+  --font-body: "Inter", "Roboto", "Pretendard", system-ui, sans-serif;
+
+  /* Layout */
+  --maxw: 1200px;
+  --gap: 24px;
+  --header-h: 68px;
+}

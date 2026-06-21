@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Brand — KoreanToyWorld</title>
+<meta name="description" content="Korean toy manufacturer hub on KoreanToyWorld — brand story, full catalog, owned characters and global launch news.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div id="ktw-header"></div>
+
+<main>
+  <section class="container">
+    <nav class="breadcrumb" id="crumb"></nav>
+
+    <!-- Brand header -->
+    <div class="row wrap" style="gap:20px;align-items:center;margin-bottom:8px">
+      <div class="bcard" style="padding:0">
+        <div class="logo" id="brandLogo" style="margin:0;width:88px;height:88px;font-size:1.8rem"></div>
+      </div>
+      <div style="flex:1;min-width:260px">
+        <div class="kicker" id="brandSince"></div>
+        <h1 id="brandName" style="margin:.1em 0"></h1>
+        <p class="muted" id="brandDesc" style="max-width:620px;margin:0"></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sponsored Global Launch banner (ad inventory — prompt §1.1) -->
+  <section class="section-sm container">
+    <div class="card is-sponsored card-pad" id="launchBanner" style="padding:0;overflow:hidden"></div>
+  </section>
+
+  <!-- Catalog -->
+  <section class="section-sm container">
+    <div class="section-head">
+      <div><div class="kicker">Catalog</div><h2 id="catalogTitle">Products</h2></div>
+    </div>
+    <div class="grid grid-4" id="catalog"></div>
+  </section>
+
+  <!-- Characters by this brand -->
+  <section class="section-sm container" id="charsSection" style="display:none">
+    <div class="section-head">
+      <div><div class="kicker">IP Portfolio</div><h2>Characters by this brand</h2></div>
+      <a class="btn btn-ghost btn-sm" href="characters.html">All characters →</a>
+    </div>
+    <div class="grid grid-4" id="brandChars"></div>
+  </section>
+
+  <!-- Advertise CTA -->
+  <section class="section container">
+    <div class="newsletter">
+      <div class="kicker" style="color:#fff;opacity:.85">For this manufacturer</div>
+      <h2 id="adveTitle">Advertise this brand</h2>
+      <p style="opacity:.95">Launch banners, character spotlights and an always-on brand hub — reach global K-Toy buyers.</p>
+      <a class="btn btn-primary" href="advertise.html">See advertising options →</a>
+    </div>
+  </section>
+</main>
+
+<div id="ktw-footer"></div>
+<button class="reward-fab" onclick="KTW.toast('Reward program — Smile.io style (stub)')">🎁 Rewards</button>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/components.js"></script>
+<script>
+  KTW.mountChrome('brands');
+  const D = KTW_DATA;
+  const slug = KTW.qs('slug') || 'iconix';
+  const b = D.brandBySlug[slug] || D.brandBySlug['iconix'];
+
+  // Breadcrumb
+  document.getElementById('crumb').innerHTML =
+    `<a href="index.html">KoreanToyShop</a> › <a href="index.html">World</a> › ` +
+    `<a href="brands.html">Brands</a> › <b>${KTW.esc(b.name)}</b>`;
+
+  // Brand header
+  const logo = document.getElementById('brandLogo');
+  logo.style.background = b.color;
+  logo.textContent = b.name[0];
+  document.getElementById('brandSince').textContent = 'since ' + b.founded;
+  document.getElementById('brandName').textContent = b.name;
+  document.getElementById('brandDesc').textContent = b.desc;
+  document.title = b.name + ' — KoreanToyWorld';
+
+  // Sponsored Global Launch banner (ad inventory)
+  document.getElementById('launchBanner').innerHTML =
+    `<span class="badge-sponsored badge">Sponsored · Global Launch</span>
+     <div class="hero-split" style="gap:0">
+       <div style="min-height:200px">${KTW.ph('New Season Launch', b.color, b.name, '100%')}</div>
+       <div style="padding:32px">
+         <div class="kicker" style="color:${b.color}">New Season Launch</div>
+         <h2 style="margin:.1em 0">${KTW.esc(b.name)} goes global</h2>
+         <p class="muted">A sponsored launch banner — premium ad inventory across the Brand & Discover pages.</p>
+         <a class="btn btn-secondary" href="advertise.html">Book this slot →</a>
+       </div>
+     </div>`;
+
+  // Catalog
+  const prods = D.products.filter(p => p.brand === slug);
+  document.getElementById('catalogTitle').textContent =
+    b.name + ' Catalog (' + prods.length + ')';
+  document.getElementById('catalog').innerHTML = prods.length
+    ? prods.map(p => KTW.productCard(p)).join('')
+    : `<div class="card card-pad muted">No products listed for this brand yet.</div>`;
+
+  // Characters by this brand
+  if (b.ips && b.ips.length) {
+    document.getElementById('charsSection').style.display = '';
+    document.getElementById('brandChars').innerHTML =
+      b.ips.map(s => D.charBySlug[s]).filter(Boolean)
+        .map(c => KTW.characterCard(c)).join('');
+  }
+
+  // Advertise CTA title
+  document.getElementById('adveTitle').textContent = 'Advertise ' + b.name;
+</script>
+</body>
+</html>

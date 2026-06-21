@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Product — KoreanToyWorld</title>
+<meta name="description" content="K-Toy product detail — authentic, KC-certified Korean character toy. Buy on KoreanToyShop.com, shipped from Seoul.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+<div id="ktw-header"></div>
+
+<main>
+  <section class="container">
+    <div class="breadcrumb" id="crumb"></div>
+  </section>
+
+  <!-- PRODUCT TOP -->
+  <section class="section-sm container" style="padding-top:0">
+    <div class="grid grid-2" style="align-items:start">
+      <div id="gallery"></div>
+      <div id="info"></div>
+    </div>
+  </section>
+
+  <!-- DESCRIPTION / SPECS -->
+  <section class="section-sm container">
+    <div class="card card-pad">
+      <div class="kicker" style="color:var(--ktw-secondary)">Description</div>
+      <h2 style="font-size:1.5rem">Product details</h2>
+      <div id="specs"></div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="section-sm container">
+    <div class="section-head"><div><div class="kicker">Trust</div><h2 style="font-size:1.5rem">Collector Reviews</h2></div></div>
+    <div class="grid grid-3" id="reviews"></div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="section container" style="padding-top:24px">
+    <div class="section-head"><div><div class="kicker">More to explore</div><h2 style="font-size:1.5rem" id="relatedHead">Related Toys</h2></div></div>
+    <div class="grid grid-4" id="related"></div>
+  </section>
+</main>
+
+<div id="ktw-footer"></div>
+<button class="reward-fab" onclick="KTW.toast('Reward program — Smile.io style (stub)')">🎁 Rewards</button>
+
+<script src="assets/js/data.js"></script>
+<script src="assets/js/charts.js"></script>
+<script src="assets/js/components.js"></script>
+<script>
+  KTW.mountChrome('');
+  const D = KTW_DATA;
+
+  const sku = KTW.qs('sku');
+  const p = D.products.find(x => x.id === sku) || D.products[0];
+
+  const charNm = KTW.charName(p.character);
+  const charCol = KTW.charColor(p.character);
+  const brandNm = KTW.brandName(p.brand);
+  document.title = p.name + ' — KoreanToyWorld';
+
+  // Breadcrumb
+  document.getElementById('crumb').innerHTML =
+    `<a href="https://koreantoyshop.com" target="_blank" rel="noopener">KoreanToyShop</a> ›
+     <a href="index.html">World</a> ›
+     <a href="character.html?slug=${p.character}">${KTW.esc(charNm)}</a> ›
+     <b>${KTW.esc(p.name)}</b>`;
+
+  // Gallery: one big placeholder + 3 thumbs
+  document.getElementById('gallery').innerHTML =
+    `<div style="border-radius:var(--r-card);overflow:hidden">${KTW.ph(charNm, charCol, p.id, '100%')}</div>
+     <div class="grid grid-3" style="margin-top:14px">
+       ${[1,2,3].map(i =>
+         `<div style="border-radius:var(--r-sm);overflow:hidden">${KTW.ph(charNm, charCol, 'View ' + i, '90px')}</div>`).join('')}
+     </div>`;
+
+  // Product info / buy box
+  const shop = KTW.shopUrl(p.id, 'item_cta');
+  document.getElementById('info').innerHTML =
+    `<div class="brand" style="font-size:.78rem;font-weight:700;letter-spacing:.04em;color:var(--ktw-ink-soft);text-transform:uppercase">${KTW.esc(brandNm)}</div>
+     <h1 style="margin:6px 0 12px">${KTW.esc(p.name)}</h1>
+     <div class="price" style="margin-bottom:8px">
+       <span class="now num">${KTW.money(p.now)}</span>
+       <span class="was num">${KTW.money(p.was)}</span>
+       <span class="save">-${KTW.save(p.was, p.now)}%</span>
+     </div>
+     <div class="row" style="font-size:.85rem;color:var(--ktw-ink-soft);margin-bottom:16px">
+       <span class="stars">${KTW.stars(p.rating)}</span>
+       <span class="num">${p.rating} (${p.reviews} reviews)</span>
+     </div>
+     <div class="row wrap" style="margin-bottom:18px">
+       <span class="badge badge-pink">100% Authentic</span>
+       ${p.kc ? '<span class="badge dot">KC Certified</span>' : ''}
+       <span class="badge dot">Ships from Seoul</span>
+     </div>
+     <a class="btn btn-primary btn-block" href="${shop}" target="_blank" rel="noopener"
+        style="font-size:1.05rem;padding:15px 22px">Buy on KoreanToyShop ↗</a>
+     <p class="muted" style="font-size:.78rem;margin-top:10px">You'll be taken to KoreanToyShop.com to complete your purchase securely.</p>
+     <div class="grid grid-2" style="gap:10px;margin-top:18px">
+       <div class="card card-pad" style="padding:12px 14px"><div class="muted" style="font-size:.72rem">Age</div><b>${KTW.esc(p.age)}</b></div>
+       <div class="card card-pad" style="padding:12px 14px"><div class="muted" style="font-size:.72rem">Battery</div><b>${KTW.esc(p.battery)}</b></div>
+       <div class="card card-pad" style="padding:12px 14px"><div class="muted" style="font-size:.72rem">Condition</div><b>${KTW.esc(p.condition)}</b></div>
+       <div class="card card-pad" style="padding:12px 14px"><div class="muted" style="font-size:.72rem">SKU</div><b>${KTW.esc(p.id)}</b></div>
+     </div>`;
+
+  // Spec table
+  const specRows = [
+    ['SKU', p.id], ['Brand', brandNm], ['Character', charNm],
+    ['Age', p.age], ['Battery', p.battery],
+    ['KC certified', p.kc ? 'Yes' : 'No'], ['Condition', p.condition],
+    ['Ships from', 'Seoul, Korea 🇰🇷']
+  ];
+  document.getElementById('specs').innerHTML =
+    `<table class="rank-table" style="margin-top:8px">
+       ${specRows.map(([k, v]) =>
+         `<tr><td style="width:200px;color:var(--ktw-ink-soft);font-weight:600">${KTW.esc(k)}</td>
+              <td><b>${KTW.esc(v)}</b></td></tr>`).join('')}
+     </table>`;
+
+  // Reviews
+  document.getElementById('reviews').innerHTML =
+    D.reviews.map(r =>
+      `<div class="review"><div class="stars">${KTW.stars(r.stars)}</div>
+       <p style="margin:8px 0">"${KTW.esc(r.text)}"</p>
+       <div class="muted" style="font-size:.82rem">${KTW.esc(r.name)}</div></div>`).join('');
+
+  // Related: same character, fallback to first 4 others
+  let related = D.products.filter(x => x.character === p.character && x.id !== p.id);
+  if (related.length < 1) related = D.products.filter(x => x.id !== p.id);
+  related = related.slice(0, 4);
+  document.getElementById('relatedHead').textContent =
+    related.length && related[0].character === p.character ? 'More ' + charNm + ' Toys' : 'Related Toys';
+  document.getElementById('related').innerHTML = related.map(x => KTW.productCard(x)).join('');
+
+  // ---- SEO: JSON-LD Product + BreadcrumbList ----
+  const productLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": p.name,
+    "sku": p.id,
+    "brand": { "@type": "Brand", "name": brandNm },
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "USD",
+      "price": p.now,
+      "availability": "https://schema.org/InStock",
+      "itemCondition": "https://schema.org/NewCondition",
+      "url": shop
+    }
+  };
+  const breadcrumbLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "KoreanToyShop", "item": "https://koreantoyshop.com" },
+      { "@type": "ListItem", "position": 2, "name": "World", "item": "index.html" },
+      { "@type": "ListItem", "position": 3, "name": charNm, "item": "character.html?slug=" + p.character },
+      { "@type": "ListItem", "position": 4, "name": p.name }
+    ]
+  };
+  [productLd, breadcrumbLd].forEach(obj => {
+    const s = document.createElement('script');
+    s.type = 'application/ld+json';
+    s.textContent = JSON.stringify(obj);
+    document.head.appendChild(s);
+  });
+</script>
+</body>
+</html>
