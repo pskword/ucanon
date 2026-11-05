@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1f4e8c">
+<title>새가족부 교재</title>
+<meta name="description" content="삼일교회 새가족부 디모데(1~4과)·여호수아(1~5과) 교재 모바일 페이지">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f4e8c'/%3E%3Ctext x='32' y='43' font-size='30' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3E새%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#f4f2ec; --card:#ffffff; --fg:#1d1f22; --fg-2:#5a5f68; --line:#dcd7cc;
+  --timothy:#1f4e8c; --joshua:#1d6b4a;
+  --font:"Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,-apple-system,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){ --bg:#15171a; --card:#1e2126; --fg:#ebe8e1; --fg-2:#b5b2aa; --line:#33373d; --timothy:#8fb4e6; --joshua:#8ccfa8; color-scheme:dark }
+}
+:root[data-theme="dark"]{ --bg:#15171a; --card:#1e2126; --fg:#ebe8e1; --fg-2:#b5b2aa; --line:#33373d; --timothy:#8fb4e6; --joshua:#8ccfa8; color-scheme:dark }
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);line-height:1.6;word-break:keep-all}
+.wrap{max-width:560px;margin:0 auto;padding-block:max(32px,env(safe-area-inset-top,0px)) 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:14px}
+.eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.06em;color:var(--fg-2)}
+h1{margin:0 0 4px;font-size:1.7rem;line-height:1.25;text-wrap:balance}
+.lead{margin:0 0 10px;color:var(--fg-2);font-size:.98rem}
+.book{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--accent);border-radius:14px;padding:16px;text-decoration:none;color:inherit;min-width:0}
+.book:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.book .mark{flex-shrink:0;width:52px;height:52px;border-radius:12px;background:var(--accent);color:#fff;font-weight:800;font-size:1.3rem;display:flex;align-items:center;justify-content:center}
+.book .text{min-width:0}
+.book .cls{font-size:.78rem;font-weight:700;color:var(--accent)}
+.book .name{font-size:1.15rem;font-weight:800;line-height:1.3}
+.book .lessons{font-size:.88rem;color:var(--fg-2)}
+.book .arrow{margin-left:auto;color:var(--accent);font-weight:800;font-size:1.2rem}
+.timothy{--accent:var(--timothy)} .joshua{--accent:var(--joshua)}
+.note{font-size:.85rem;color:var(--fg-2);border-top:1px solid var(--line);padding-top:12px;margin-top:6px}
+.note p{margin:0 0 .4em}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div>
+    <div class="eyebrow">삼일교회 새가족부</div>
+    <h1>새가족부 교재</h1>
+    <p class="lead">휴대폰으로 보는 새가족 교육 교재입니다. 반에 맞는 교재를 누르세요.</p>
+  </div>
+  <a class="book timothy" href="timothy.html">
+    <span class="mark">디</span>
+    <span class="text"><span class="cls">기신자반 · 디모데반</span><br><span class="name">그리스도인의 삶</span><br><span class="lessons">1과 예수님 · 2과 성경 · 3과 교회 · 4과 예배</span></span>
+    <span class="arrow">›</span>
+  </a>
+  <a class="book joshua" href="joshua.html">
+    <span class="mark">여</span>
+    <span class="text"><span class="cls">초신자반 · 여호수아반</span><br><span class="name">여호수아 교재</span><br><span class="lessons">구원 · 기도응답 · 승리 · 사죄 · 인도의 확신</span></span>
+    <span class="arrow">›</span>
+  </a>
+  <div class="note">
+    <p>질문마다 메모를 적을 수 있고, 메모는 이 기기의 브라우저에만 저장됩니다.</p>
+    <p>각 과 끝의 "메모 저장 및 전송" 버튼으로 메모가 담긴 교재 파일을 카카오톡으로 보낼 수 있습니다.</p>
+  </div>
+</div>
+</body>
+</html>
