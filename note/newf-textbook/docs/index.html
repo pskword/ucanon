@@ -6,18 +6,18 @@
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#1f4e8c">
 <title>새가족부 교재</title>
-<meta name="description" content="삼일교회 새가족부 디모데(1~4과)·여호수아(1~5과) 교재 모바일 페이지">
+<meta name="description" content="삼일교회 새가족부 디모데(1~4과)·여호수아(1~5과) 교재와 리트릿 일쉼틈결 모바일 페이지">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231f4e8c'/%3E%3Ctext x='32' y='43' font-size='30' text-anchor='middle' fill='white' font-family='sans-serif' font-weight='700'%3E새%3C/text%3E%3C/svg%3E">
 <style>
 :root{
   --bg:#f4f2ec; --card:#ffffff; --fg:#1d1f22; --fg-2:#5a5f68; --line:#dcd7cc;
-  --timothy:#1f4e8c; --joshua:#1d6b4a;
+  --timothy:#1f4e8c; --joshua:#1d6b4a; --wr:#5b5a7d;
   --font:"Pretendard Variable",Pretendard,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",system-ui,-apple-system,sans-serif;
 }
 @media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){ --bg:#15171a; --card:#1e2126; --fg:#ebe8e1; --fg-2:#b5b2aa; --line:#33373d; --timothy:#8fb4e6; --joshua:#8ccfa8; color-scheme:dark }
+  :root:not([data-theme="light"]){ --bg:#15171a; --card:#1e2126; --fg:#ebe8e1; --fg-2:#b5b2aa; --line:#33373d; --timothy:#8fb4e6; --joshua:#8ccfa8; --wr:#b9b7dc; color-scheme:dark }
 }
-:root[data-theme="dark"]{ --bg:#15171a; --card:#1e2126; --fg:#ebe8e1; --fg-2:#b5b2aa; --line:#33373d; --timothy:#8fb4e6; --joshua:#8ccfa8; color-scheme:dark }
+:root[data-theme="dark"]{ --bg:#15171a; --card:#1e2126; --fg:#ebe8e1; --fg-2:#b5b2aa; --line:#33373d; --timothy:#8fb4e6; --joshua:#8ccfa8; --wr:#b9b7dc; color-scheme:dark }
 body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--font);line-height:1.6;word-break:keep-all}
 .wrap{max-width:560px;margin:0 auto;padding-block:max(32px,env(safe-area-inset-top,0px)) 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:14px}
 .eyebrow{font-size:.8rem;font-weight:700;letter-spacing:.06em;color:var(--fg-2)}
@@ -31,7 +31,7 @@ h1{margin:0 0 4px;font-size:1.7rem;line-height:1.25;text-wrap:balance}
 .book .name{font-size:1.15rem;font-weight:800;line-height:1.3}
 .book .lessons{font-size:.88rem;color:var(--fg-2)}
 .book .arrow{margin-left:auto;color:var(--accent);font-weight:800;font-size:1.2rem}
-.timothy{--accent:var(--timothy)} .joshua{--accent:var(--joshua)}
+.timothy{--accent:var(--timothy)} .joshua{--accent:var(--joshua)} .wr{--accent:var(--wr)}
 .note{font-size:.85rem;color:var(--fg-2);border-top:1px solid var(--line);padding-top:12px;margin-top:6px}
 .note p{margin:0 0 .4em}
 </style>
@@ -51,6 +51,11 @@ h1{margin:0 0 4px;font-size:1.7rem;line-height:1.25;text-wrap:balance}
   <a class="book joshua" href="joshua.html">
     <span class="mark">여</span>
     <span class="text"><span class="cls">초신자반 · 여호수아반</span><br><span class="name">여호수아 교재</span><br><span class="lessons">구원 · 기도응답 · 승리 · 사죄 · 인도의 확신</span></span>
+    <span class="arrow">›</span>
+  </a>
+  <a class="book wr" href="wr.html">
+    <span class="mark">일</span>
+    <span class="text"><span class="cls">리트릿 · 일쉼틈결</span><br><span class="name">일쉼틈결</span><br><span class="lessons">일 · 쉼 · 틈 · 결, 16개의 질문에 답하기</span></span>
     <span class="arrow">›</span>
   </a>
   <div class="note">

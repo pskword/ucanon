@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>일쉼틈결</title>
+<style>
+  :root {
+    --bg: #faf8f4;
+    --fg: #2b2a28;
+    --muted: #7a766f;
+    --card: #ffffff;
+    --line: #e6e1d8;
+    --work: #b7bfe0;
+    --rest: #b9d1b0;
+    --taste: #e3cfa8;
+    --attitude: #dbb3c2;
+    --work-bg: #f1f3fa;
+    --rest-bg: #f1f7ee;
+    --taste-bg: #faf5ea;
+    --attitude-bg: #f9f0f3;
+    --accent: #4b4a5e;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Pretendard", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", system-ui, sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    padding-bottom: 96px;
+  }
+  header { padding: 44px 16px 20px; text-align: center; }
+  .logo { display: inline-grid; grid-template-columns: repeat(2, 60px); gap: 8px; margin-bottom: 18px; }
+  .logo span {
+    width: 60px; height: 60px; display: grid; place-items: center;
+    font-size: 28px; font-weight: 800; color: #fff; border-radius: 8px; position: relative;
+  }
+  .logo span small { position: absolute; bottom: 3px; right: 6px; font-size: 8px; font-weight: 600; letter-spacing: .08em; opacity: .9; }
+  .l-work { background: var(--work); }
+  .l-rest { background: var(--rest); }
+  .l-taste { background: var(--taste); }
+  .l-attitude { background: var(--attitude); }
+  h1 { margin: 0; font-size: 28px; letter-spacing: .3em; font-weight: 800; }
+  .sub { margin: 6px 0 0; color: var(--muted); font-size: 14px; }
+
+  main { max-width: 760px; margin: 0 auto; padding: 0 16px; display: grid; gap: 20px; }
+
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 22px 20px; box-shadow: 0 2px 10px rgba(0,0,0,.04);
+  }
+  .card h2 { margin: 0 0 10px; font-size: 15px; letter-spacing: .04em; color: var(--muted); font-weight: 700; }
+  .card h2 b { color: var(--fg); font-size: 18px; letter-spacing: .12em; margin-left: 6px; }
+  .card p { margin: 0 0 14px; font-size: 15.5px; word-break: keep-all; }
+  .card p:last-child { margin-bottom: 0; }
+  .qr { display: flex; gap: 14px; align-items: flex-start; }
+  .qr .txt { flex: 1; }
+  .qr a.link { font-size: 13px; color: var(--muted); }
+
+  /* name */
+  .who { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .who label { font-size: 14px; color: var(--muted); white-space: nowrap; }
+  .who input {
+    flex: 1; min-width: 160px; font: inherit; font-size: 16px; padding: 10px 12px;
+    border: 1px solid var(--line); border-radius: 10px; background: #fff; color: var(--fg);
+  }
+  .progress { font-size: 13px; color: var(--muted); white-space: nowrap; }
+  .progress b { color: var(--fg); }
+
+  /* question groups */
+  .group { border-radius: 14px; border: 1px solid var(--line); overflow: hidden; background: var(--card); box-shadow: 0 2px 10px rgba(0,0,0,.04); }
+  .group-head { display: flex; align-items: center; gap: 14px; padding: 18px 20px; }
+  .group-head .badge {
+    width: 52px; height: 52px; border-radius: 10px; display: grid; place-items: center;
+    font-size: 26px; font-weight: 800; color: #fff; flex: none;
+  }
+  .group-head .meta small { display: block; font-size: 11px; letter-spacing: .14em; color: var(--muted); font-weight: 600; }
+  .group-head .meta strong { font-size: 17px; }
+  .g-work .group-head { background: var(--work-bg); } .g-work .badge { background: var(--work); }
+  .g-rest .group-head { background: var(--rest-bg); } .g-rest .badge { background: var(--rest); }
+  .g-taste .group-head { background: var(--taste-bg); } .g-taste .badge { background: var(--taste); }
+  .g-attitude .group-head { background: var(--attitude-bg); } .g-attitude .badge { background: var(--attitude); }
+
+  .q { padding: 18px 20px 20px; border-top: 1px solid var(--line); }
+  .q .qt { display: flex; gap: 10px; margin: 0 0 10px; font-size: 15.5px; font-weight: 600; word-break: keep-all; }
+  .q .qt .n { color: var(--muted); font-weight: 700; flex: none; font-variant-numeric: tabular-nums; }
+  .q textarea {
+    width: 100%; min-height: 84px; resize: none; overflow: hidden;
+    font: inherit; font-size: 16px; line-height: 1.65; padding: 12px 14px;
+    border: 1px solid var(--line); border-radius: 10px; background: #fcfbf8; color: var(--fg);
+    transition: border-color .15s, background .15s;
+  }
+  .q textarea:focus, .who input:focus, .blank input:focus { outline: none; border-color: #9a98b8; background: #fff; }
+  .q textarea::placeholder { color: #b9b4aa; }
+  .blank { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 17px; margin: 4px 0 2px; }
+  .blank input {
+    flex: 1; min-width: 140px; font: inherit; font-size: 17px; padding: 8px 12px;
+    border: 0; border-bottom: 2px solid #9a98b8; background: #fcfbf8; color: var(--fg); border-radius: 6px 6px 0 0;
+  }
+
+  /* bottom toolbar */
+  .bar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    background: rgba(250,248,244,.94); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid var(--line);
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  }
+  .bar .inner { max-width: 760px; margin: 0 auto; display: flex; gap: 8px; align-items: center; justify-content: flex-end; }
+  .bar .status { font-size: 12px; color: var(--muted); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .btn {
+    font: inherit; font-size: 14px; font-weight: 600; padding: 10px 14px; border-radius: 10px;
+    border: 1px solid var(--line); background: #fff; color: var(--fg); cursor: pointer; white-space: nowrap;
+  }
+  .btn:active { transform: translateY(1px); }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn.ghost { background: transparent; }
+  .menu { position: relative; }
+  .menu .pop {
+    position: absolute; right: 0; bottom: calc(100% + 8px); background: #fff; border: 1px solid var(--line);
+    border-radius: 12px; box-shadow: 0 8px 30px rgba(0,0,0,.12); min-width: 240px; max-width: calc(100vw - 24px); display: none; overflow: hidden;
+  }
+  .menu.open .pop { display: block; }
+  .menu .pop button {
+    display: block; width: 100%; text-align: left; font: inherit; font-size: 14px; padding: 12px 14px;
+    background: none; border: 0; border-bottom: 1px solid var(--line); cursor: pointer; color: var(--fg);
+  }
+  .menu .pop button:last-child { border-bottom: 0; }
+  .menu .pop button:hover { background: #f6f4ef; }
+  .menu .pop button small { display: block; color: var(--muted); font-size: 12px; }
+
+  .toast {
+    position: fixed; left: 50%; bottom: 92px; transform: translateX(-50%) translateY(10px);
+    background: #2b2a28; color: #fff; font-size: 13px; padding: 10px 16px; border-radius: 999px;
+    opacity: 0; pointer-events: none; transition: .2s; z-index: 60; max-width: 90vw; text-align: center;
+  }
+  .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  footer { text-align: center; color: var(--muted); font-size: 12px; padding: 28px 16px 8px; }
+
+  @media (min-width: 900px) { header { padding-top: 60px; } h1 { font-size: 34px; } }
+  @media (max-width: 420px) { .bar .status { display: none; } .btn { padding: 10px 12px; font-size: 13.5px; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo" aria-hidden="true">
+    <span class="l-work">일<small>WORK</small></span>
+    <span class="l-rest">쉼<small>REST</small></span>
+    <span class="l-taste">틈<small>TASTE</small></span>
+    <span class="l-attitude">결<small>ATTITUDE</small></span>
+  </div>
+  <h1>일쉼틈결</h1>
+  <p class="sub">업무, 휴식, 취향, 그리고 삶을 대하는 태도 · 새가족부 리트릿</p>
+</header>
+
+<main id="main">
+
+  <section class="card about">
+    <h2>about <b>일쉼틈결</b></h2>
+    <p>일하고, 쉬고, 무언가를 꿈꾸고 고민하며 하루를 보내지만,<br>정작 그 하루를 살아낸 '나'는 어떤 사람일까요?</p>
+    <p>이번 이벤트에서는 그 하루를 잠시 멈춰 세우고,<br>지그시 바라보고자 합니다.</p>
+    <p>일과 쉼, 취향과 태도를 묻는 16개의 질문에 답해보고,<br>누구에게 보여주기 위한 것이 아닌 나만 보는 가장 솔직한 이력서까지 작성해보세요.</p>
+    <p>남이 정해준 기준 대신 스스로 써 내려간 문장으로 만나는,<br>오늘의 당신을 기대합니다.</p>
+  </section>
+
+  <section class="card about">
+    <h2>일 / 쉼 / 틈 / 결</h2>
+    <p>업무, 휴식, 취향, 그리고 삶을 대하는 태도.<br>일상을 이루는 우리의 네 가지 요소입니다.</p>
+    <p>버텨내다 보면 쉬어가는 순간이 불쑥 찾아오고, 바쁜 틈으로 나만의 취향이 비집고 나오기도 합니다. 그렇게 우리는 같은 세상을 저마다 다르게 바라보며 울고 웃으며 하루를 살아가죠.</p>
+    <p>이 네 가지를 향한 16개의 작은 질문들을 준비했습니다.<br>고민 없이 흘려보냈던 일상을 산책하듯 다시 돌아보며,<br>평범했던 하루가 전보다 특별하게 자리하길 바라는 마음입니다.</p>
+  </section>
+
+  <section class="card who-card">
+    <div class="who">
+      <label for="who">작성자</label>
+      <input id="who" type="text" placeholder="이름을 적어주세요" autocomplete="off">
+      <span class="progress"><b id="cnt">0</b> / 16 답변</span>
+    </div>
+  </section>
+
+  <!-- 일 WORK -->
+  <section class="group g-work" data-group="일">
+    <div class="group-head">
+      <div class="badge">일</div>
+      <div class="meta"><small>WORK</small><strong>업무</strong></div>
+    </div>
+    <div class="q"><p class="qt"><span class="n">Q1.</span><span>마감에 쫓길 때, '완성'을 위해 가장 먼저 포기하는 건 무엇인가요.</span></p><textarea data-q="1" placeholder="답변을 적어주세요"></textarea></div>
+    <div class="q"><p class="qt"><span class="n">Q2.</span><span>의욕이 없는 날, 몸을 움직이게 하는 '최소한의 루틴'은 무엇인가요.</span></p><textarea data-q="2" placeholder="답변을 적어주세요"></textarea></div>
+    <div class="q"><p class="qt"><span class="n">Q3.</span><span>손에 익어 신체 일부 같은, 절대 잃어버리고 싶지 않은 도구는 무엇인가요.</span></p><textarea data-q="3" placeholder="답변을 적어주세요"></textarea></div>
+    <div class="q"><p class="qt"><span class="n">Q4.</span><span>AI도 절대 대체할 수 없다고 믿는 '사람의 영역'은 무엇인가요.</span></p><textarea data-q="4" placeholder="답변을 적어주세요"></textarea></div>
+  </section>
+
+  <!-- 쉼 REST -->
+  <section class="group g-rest" data-group="쉼">
+    <div class="group-head">
+      <div class="badge">쉼</div>
+      <div class="meta"><small>REST</small><strong>휴식</strong></div>
+    </div>
+    <div class="q"><p class="qt"><span class="n">Q5.</span><span>소음 가득한 도시 속, 당신만 아는 고요한 도피처는 어디인가요.</span></p><textarea data-q="5" placeholder="답변을 적어주세요"></textarea></div>
+    <div class="q"><p class="qt"><span class="n">Q6.</span><span>관계에도 다이어트가 필요하다면, 가장 먼저 정리하고 싶은 관계는 무엇인가요.</span></p><textarea data-q="6" placeholder="답변을 적어주세요"></textarea></div>
+    <div class="q"><p class="qt"><span class="n">Q7.</span><span>진정한 휴식은 '멈춤'에 가깝나요, '몰입'에 가깝나요.</span></p><textarea data-q="7" placeholder="답변을 적어주세요"></textarea></div>
+    <div class="q"><p class="qt"><span class="n">Q8.</span><span>잘 쉬었다는 말이 절로 나오는 휴일, 그 풍경을 한 문장으로 묘사해주세요.</span></p><textarea data-q="8" placeholder="답변을 적어주세요"></textarea></div>
+  </section>
+
+  <!-- 틈 TASTE -->
+  <section class="group g-taste" data-group="틈">
+    <div class="group-head">
+      <div class="badge">틈</div>
+      <div class="meta"><small>TASTE</small><strong>취향</strong></div>
+    </div>
+    <div class="q"><p class="qt"><span class="n">Q9.</span><span>아까워서 못 쓰고 관상용으로 아껴두는 물건이 있다면 무엇인가요.</span></p><textarea data-q="9" placeholder="답변을 적어주세요"></textarea></div>
+    <div class="q"><p class="qt"><span class="n">Q10.</span><span>장바구니에만 담긴 채 오래 묵혀둔 꿈의 아이템을 소개해주세요.</span></p><textarea data-q="10" placeholder="답변을 적어주세요"></textarea></div>
+    <div class="q"><p class="qt"><span class="n">Q11.</span><span>이해하긴 어려워도 존중하려 애썼던 타인의 취향이 있다면 이야기해주세요.</span></p><textarea data-q="11" placeholder="답변을 적어주세요"></textarea></div>
+    <div class="q"><p class="qt"><span class="n">Q12.</span><span>선물을 줄 때, 상대의 필요와 내 취향 중 뭘 먼저 생각하나요.</span></p><textarea data-q="12" placeholder="답변을 적어주세요"></textarea></div>
+  </section>
+
+  <!-- 결 ATTITUDE -->
+  <section class="group g-attitude" data-group="결">
+    <div class="group-head">
+      <div class="badge">결</div>
+      <div class="meta"><small>ATTITUDE</small><strong>태도</strong></div>
+    </div>
+    <div class="q">
+      <p class="qt"><span class="n">Q13.</span><span>어린아이에게 이 세상을 소개한다면? 빈칸을 채워주세요.</span></p>
+      <div class="blank">"이곳은 <input data-q="13" type="text" placeholder="　" autocomplete="off"> 한 곳이야."</div>
+    </div>
+    <div class="q"><p class="qt"><span class="n">Q14.</span><span>도저히 참을 수 없는 타인의 '무례함'은 구체적으로 어떤 행동인가요.</span></p><textarea data-q="14" placeholder="답변을 적어주세요"></textarea></div>
+    <div class="q"><p class="qt"><span class="n">Q15.</span><span>남들은 부러워하지만 사실 감추고 싶은 의외의 모습이 있다면 무엇인가요.</span></p><textarea data-q="15" placeholder="답변을 적어주세요"></textarea></div>
+    <div class="q"><p class="qt"><span class="n">Q16.</span><span>오늘 밤 영영 못 깨어난다면, 남기지 못해 후회할 '말'이나 '일'은 무엇인가요.</span></p><textarea data-q="16" placeholder="답변을 적어주세요"></textarea></div>
+  </section>
+
+  <section class="card about">
+    <div class="qr">
+      <div class="txt">
+        <h2>about <b>QnA room</b></h2>
+        <p>QnA room은 서울 망원동에 자리한 체험형 전시 공간입니다.</p>
+        <p>좋은 답을 얻기 위해, 좋은 질문을 먼저 만드는 일에 몰두하며, 계절마다 새로운 주제로 다양한 브랜드와 협업 전시를 선보입니다.</p>
+        <p>이번 여의도브라이튼도서관에서는, 읽고 쓰고 남기는 QnA room의 체험 전시를 책과 함께 만나보실 수 있도록 준비하였습니다.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>답변은 이 기기(브라우저)에 자동 저장됩니다. 전송 버튼으로 답변이 담긴 페이지를 카카오톡 등으로 보낼 수 있습니다.</footer>
+
+<div class="bar">
+  <div class="inner">
+    <span class="status" id="status">아직 저장된 답변이 없습니다</span>
+    <button class="btn ghost" id="btnSave" type="button">저장</button>
+    <div class="menu" id="menu">
+      <button class="btn primary" id="btnShare" type="button">페이지 전송</button>
+      <div class="pop">
+        <button type="button" data-act="share">카카오톡으로 전송<small>답변이 담긴 HTML 파일을 공유 시트로 보냅니다</small></button>
+        <button type="button" data-act="text">답변 텍스트 복사<small>카카오톡 대화창에 붙여넣기</small></button>
+        <button type="button" data-act="download">HTML 파일 저장<small>답변이 담긴 페이지를 내려받기</small></button>
+        <button type="button" data-act="reset">답변 모두 지우기</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  var KEY = 'ilswimteumgyeol.v1';
+  var fields = Array.prototype.slice.call(document.querySelectorAll('[data-q]'));
+  var who = document.getElementById('who');
+  var status = document.getElementById('status');
+  var cnt = document.getElementById('cnt');
+  var toastEl = document.getElementById('toast');
+  var toastT;
+
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { toastEl.classList.remove('show'); }, 2200);
+  }
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+  function stamp(d) { return pad(d.getMonth() + 1) + '/' + pad(d.getDate()) + ' ' + pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+  function dateTag(d) { return d.getFullYear() + pad(d.getMonth() + 1) + pad(d.getDate()); }
+
+  function autosize(t) {
+    if (t.tagName !== 'TEXTAREA') return;
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight + 2) + 'px';
+  }
+
+  function collect() {
+    var a = {};
+    fields.forEach(function (f) { a[f.getAttribute('data-q')] = f.value; });
+    return { who: who.value, answers: a, savedAt: new Date().toISOString() };
+  }
+  function answered() {
+    return fields.filter(function (f) { return f.value.trim() !== ''; }).length;
+  }
+  function updateCount() { cnt.textContent = answered(); }
+
+  function save(silent) {
+    var data = collect();
+    try {
+      localStorage.setItem(KEY, JSON.stringify(data));
+      status.textContent = '자동 저장됨 · ' + stamp(new Date());
+      if (!silent) toast('저장했습니다');
+    } catch (e) {
+      status.textContent = '저장 실패 (브라우저 저장소 사용 불가)';
+      if (!silent) toast('저장할 수 없습니다. 브라우저 설정을 확인해주세요.');
+    }
+    updateCount();
+  }
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return;
+      var data = JSON.parse(raw);
+      who.value = data.who || '';
+      fields.forEach(function (f) {
+        var v = data.answers && data.answers[f.getAttribute('data-q')];
+        if (v) f.value = v;
+        autosize(f);
+      });
+      if (data.savedAt) status.textContent = '마지막 저장 · ' + stamp(new Date(data.savedAt));
+    } catch (e) {}
+    updateCount();
+  }
+
+  var timer;
+  function onInput(e) {
+    autosize(e.target);
+    updateCount();
+    clearTimeout(timer);
+    timer = setTimeout(function () { save(true); }, 600);
+  }
+  fields.forEach(function (f) { f.addEventListener('input', onInput); });
+  who.addEventListener('input', onInput);
+  window.addEventListener('resize', function () { fields.forEach(autosize); });
+
+  document.getElementById('btnSave').addEventListener('click', function () { save(false); });
+
+  /* ---------- export ---------- */
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function nl2br(s) { return esc(s).replace(/\n/g, '<br>'); }
+
+  function questionsData() {
+    var out = [];
+    document.querySelectorAll('.group').forEach(function (g) {
+      var cls = Array.prototype.find.call(g.classList, function (c) { return c.indexOf('g-') === 0; });
+      var head = g.querySelector('.group-head');
+      var items = [];
+      g.querySelectorAll('.q').forEach(function (q) {
+        var f = q.querySelector('[data-q]');
+        items.push({
+          n: q.querySelector('.n').textContent,
+          text: q.querySelector('.qt span:last-child').textContent,
+          blank: f.tagName === 'INPUT',
+          answer: f.value
+        });
+      });
+      out.push({
+        cls: cls,
+        badge: head.querySelector('.badge').textContent,
+        en: head.querySelector('small').textContent,
+        ko: head.querySelector('strong').textContent,
+        items: items
+      });
+    });
+    return out;
+  }
+
+  function buildHtml() {
+    var name = who.value.trim();
+    var now = new Date();
+    var css = document.querySelector('style').textContent;
+    var aboutCards = Array.prototype.map.call(document.querySelectorAll('main > .card.about'), function (c) { return c.outerHTML; });
+    var logo = document.querySelector('header').outerHTML;
+
+    var groupsHtml = questionsData().map(function (g) {
+      var qs = g.items.map(function (it) {
+        var ans;
+        if (it.blank) {
+          ans = '<div class="blank">"이곳은 <span class="ans-inline">' + (it.answer.trim() ? esc(it.answer) : '　　　　') + '</span> 한 곳이야."</div>';
+        } else {
+          ans = '<div class="ans' + (it.answer.trim() ? '' : ' empty') + '">' + (it.answer.trim() ? nl2br(it.answer) : '(답변 없음)') + '</div>';
+        }
+        return '<div class="q"><p class="qt"><span class="n">' + esc(it.n) + '</span><span>' + esc(it.text) + '</span></p>' + ans + '</div>';
+      }).join('');
+      return '<section class="group ' + g.cls + '"><div class="group-head"><div class="badge">' + esc(g.badge) +
+        '</div><div class="meta"><small>' + esc(g.en) + '</small><strong>' + esc(g.ko) + '</strong></div></div>' + qs + '</section>';
+    }).join('');
+
+    var extraCss = [
+      'body{padding-bottom:40px}',
+      '.ans{font-size:16px;line-height:1.7;padding:12px 14px;border-radius:10px;background:#fcfbf8;border:1px solid var(--line);white-space:normal;word-break:keep-all}',
+      '.ans.empty{color:#b9b4aa}',
+      '.ans-inline{display:inline-block;min-width:120px;padding:2px 10px;border-bottom:2px solid #9a98b8;font-weight:600}',
+      '.byline{text-align:center;color:var(--muted);font-size:13px;margin-top:-6px}',
+      '.byline b{color:var(--fg)}'
+    ].join('\n');
+
+    var byline = '<p class="byline">' + (name ? '<b>' + esc(name) + '</b>의 답변 · ' : '') + esc(stamp(now)) + ' 작성</p>';
+
+    return '<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">' +
+      '<title>일쉼틈결' + (name ? ' · ' + esc(name) : '') + '</title><style>' + css + '\n' + extraCss + '</style></head><body>' +
+      logo + byline + '<main>' + aboutCards[0] + groupsHtml + aboutCards[1] + aboutCards[2] + '</main>' +
+      '<footer>일쉼틈결 · 새가족부 리트릿</footer></body></html>';
+  }
+
+  function buildText() {
+    var name = who.value.trim();
+    var lines = ['[일쉼틈결] ' + (name ? name + '의 답변' : '나의 답변') + ' (' + stamp(new Date()) + ')', ''];
+    questionsData().forEach(function (g) {
+      lines.push('■ ' + g.badge + ' · ' + g.ko + ' (' + g.en + ')');
+      g.items.forEach(function (it) {
+        lines.push(it.n + ' ' + it.text);
+        if (it.blank) lines.push('→ "이곳은 ' + (it.answer.trim() || '____') + ' 한 곳이야."');
+        else lines.push('→ ' + (it.answer.trim() || '(답변 없음)'));
+        lines.push('');
+      });
+    });
+    return lines.join('\n').trim();
+  }
+
+  function fileName() {
+    var name = who.value.trim().replace(/[\\/:*?"<>|]/g, '');
+    return '일쉼틈결_답변' + (name ? '_' + name : '') + '_' + dateTag(new Date()) + '.html';
+  }
+
+  function download(html, fname) {
+    var blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = fname;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+  }
+
+  function shareHtml() {
+    save(true);
+    var html = buildHtml();
+    var fname = fileName();
+    var title = '일쉼틈결 답변' + (who.value.trim() ? ' - ' + who.value.trim() : '');
+    if (navigator.share) {
+      var file;
+      try { file = new File([html], fname, { type: 'text/html' }); } catch (e) {}
+      if (file && navigator.canShare && navigator.canShare({ files: [file] })) {
+        navigator.share({ files: [file], title: title, text: title }).then(function () {
+          toast('공유 시트를 열었습니다. 카카오톡을 선택해주세요.');
+        }).catch(function (err) {
+          if (err && err.name === 'AbortError') return;
+          download(html, fname);
+          toast('파일로 저장했습니다. 카카오톡에서 파일을 첨부해 보내주세요.');
+        });
+        return;
+      }
+    }
+    download(html, fname);
+    toast('이 브라우저는 바로 공유를 지원하지 않아 파일로 저장했습니다. 카카오톡에서 파일을 첨부해 보내주세요.');
+  }
+
+  function shareText() {
+    save(true);
+    var text = buildText();
+    function copied() { toast('답변 텍스트를 복사했습니다. 카카오톡에 붙여넣기 하세요.'); }
+    function fallback() {
+      var ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); copied(); } catch (e) { toast('복사에 실패했습니다.'); }
+      ta.remove();
+    }
+    if (navigator.share && /Android|iPhone|iPad/i.test(navigator.userAgent)) {
+      navigator.share({ title: '일쉼틈결 답변', text: text }).catch(function (err) {
+        if (err && err.name !== 'AbortError') fallback();
+      });
+      return;
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(copied, fallback);
+    } else fallback();
+  }
+
+  /* ---------- menu ---------- */
+  var menu = document.getElementById('menu');
+  document.getElementById('btnShare').addEventListener('click', function (e) {
+    e.stopPropagation();
+    menu.classList.toggle('open');
+  });
+  document.addEventListener('click', function () { menu.classList.remove('open'); });
+  menu.querySelector('.pop').addEventListener('click', function (e) {
+    var b = e.target.closest('button'); if (!b) return;
+    menu.classList.remove('open');
+    var act = b.getAttribute('data-act');
+    if (act === 'share') shareHtml();
+    else if (act === 'text') shareText();
+    else if (act === 'download') { save(true); download(buildHtml(), fileName()); toast('HTML 파일로 저장했습니다.'); }
+    else if (act === 'reset') {
+      if (!confirm('모든 답변을 지울까요? 되돌릴 수 없습니다.')) return;
+      fields.forEach(function (f) { f.value = ''; autosize(f); });
+      who.value = '';
+      try { localStorage.removeItem(KEY); } catch (e) {}
+      status.textContent = '아직 저장된 답변이 없습니다';
+      updateCount();
+      toast('답변을 모두 지웠습니다.');
+    }
+  });
+
+  load();
+  fields.forEach(autosize);
+})();
+</script>
+</body>
+</html>
